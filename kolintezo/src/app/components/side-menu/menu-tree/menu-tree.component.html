@@ -1,0 +1,34 @@
+<ng-container *ngIf="model.innerItems.length === 0">
+  <div *ngIf="model.displayName" class="menu-item" style="padding-top: 5px; padding-bottom: 5px; font-size: large"
+       [ngClass]="model.isSelected ? 'selected-menu-item' : ''"
+       [ngStyle]="{ 'padding-left.px': leftPadding, 'width.percent': 100}" (click)="onMenuSelect()">
+    <ng-container *ngIf="model.icon">
+      <i [className]="model.icon"></i>
+    </ng-container>
+    {{model.displayName}}
+  </div>
+</ng-container>
+<ng-container *ngIf="model.innerItems.length > 0">
+  <div *ngIf="model.displayName" class="menu-item" style="padding-top: 5px; padding-bottom: 5px"
+       [ngStyle]="{ 'padding-left.px': leftPadding, 'width.percent': 100}" (click)="model.isExpanded = !model.isExpanded">
+    <ng-container *ngIf="model.icon">
+      <i [className]="model.icon"></i>
+    </ng-container>
+
+    <ng-container *ngIf="!model.icon && model.isExpanded">
+      <i [className]="'fas fa-angle-down'"></i>
+    </ng-container>
+    <ng-container *ngIf="!model.icon && !model.isExpanded">
+      <i [className]="'fas fa-angle-right'"></i>
+    </ng-container>
+    {{model.displayName}}
+  </div>
+
+<!--  childs-->
+  <ng-container *ngIf="model.isExpanded">
+    <app-menu-tree *ngFor="let childModel of model.innerItems" [model]="childModel"
+                   [rootModel]="rootModel" [leftPadding]="getPadding()"></app-menu-tree>
+  </ng-container>
+
+
+</ng-container>

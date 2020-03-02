@@ -1,0 +1,170 @@
+// to easily get colors
+@function color($color,$tone) {
+  @if map-has-key($palettes, $color) {
+    $color: map-get($palettes, $color);
+    @if map-has-key($color, $tone) {
+      $tone: map-get($color, $tone);
+      @return $tone;
+    }
+    @return null;
+  }
+  @return null;
+
+}
+
+$palettes: (
+  dark: (
+    // content colors
+    C000: hsl(200, 0%, 100%),
+    C100: hsl(200, 10%, 90%),
+    C200: hsl(200, 20%, 80%),
+    C300: hsl(200, 30%, 70%),
+    C400: hsl(200, 40%, 60%),
+    C500: hsl(200, 50%, 55%),
+    C600: hsl(200, 60%, 50%),
+    C700: hsla(200, 70%, 45%),
+    C800: hsla(200, 80%, 40%),
+    C900: hsla(200, 90%, 40%),
+    // background colors
+    B000: hsl(200, 0%, 0%),
+    B100: hsl(200, 5%, 0%),
+    B200: hsl(200, 10%, 5%),
+    B300: hsl(200, 15%, 5%),
+    B400: hsl(200, 20%, 10%),
+    B500: hsl(200, 25%, 10%),
+    B600: hsl(200, 30%, 15%),
+    B700: hsla(200, 35%, 15%),
+    B800: hsla(200, 40%, 20%),
+    B900: hsla(200, 45%, 20%),
+  )
+);
+
+body {
+  margin: 0;
+}
+
+div {
+  margin: 0;
+  font-family: "Roboto Light", "Times New Roman", Times, serif;
+}
+
+
+@import '../node_modules/primeng/resources/themes/nova-dark/theme.css';
+.dark {
+  color: color(dark, C200);
+  app-kol-header {
+    .header {
+      width: 100%;
+      background-color: color(dark, B900);
+      border: 1px solid color(dark, B600);
+      box-sizing: border-box;
+
+
+      .p-grid{
+        margin-right: 0;
+      }
+      .show-menu-icon {
+        padding: 8px;
+      }
+      .show-menu-icon:hover {
+        cursor: pointer;
+      }
+      p {
+        font-size: x-large;
+        margin: 0;
+        padding: 15px;
+      }
+    }
+  }
+
+  app-side-menu {
+    .ui-sidebar {
+
+      overflow: auto;
+      background-color: rgba(color(dark, B600), 0.95);
+      padding: 0 0 0 0;
+      color: rgba(color(dark, C600), 0.95);
+      border: 1px solid color(dark, B600);
+      box-shadow: 0 0 10px color(dark, B000);
+      .menu-item {
+         cursor: pointer;
+      }
+      .menu-item:hover {
+        background-color: rgba(color(dark, B800), 0.95);
+      }
+      .selected-menu-item {
+        background-color: rgba(color(dark, B800), 0.95);
+      }
+    }
+
+    .kol-sidebar {
+      background-color: color(dark, B600);
+      padding: 0 0 0 0;
+      color: rgba(color(dark, C600), 0.95);
+      border: 1px solid color(dark, B600);
+      height: calc(100vh - 69px);
+      width: 220px;
+      overflow: auto;
+      .menu-item {
+        cursor: pointer;
+      }
+      .menu-item:hover {
+        background-color: rgba(color(dark, B800), 0.95);
+      }
+      .selected-menu-item {
+        background-color: rgba(color(dark, B800), 0.95);
+      }
+    }
+  }
+
+  app-login {
+    .kol-login-box {
+      background-color: color(dark, B200);
+      width: 100vw;
+      height: calc(100vh - 69px);
+
+      .ui-card {
+        color: color(dark, C100);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-right: -50%;
+        transform: translate(-50%, -50%);
+        width: auto;
+        background-color: color(dark, B800);
+        border-radius: 5px;
+        box-shadow: 0 0 20px color(dark, B900);
+      }
+
+      .ui-card-header {
+        text-align: center;
+        font-size: larger;
+        padding: 20px;
+      }
+      .ui-card-footer {
+        // text-align: center;
+        .ui-progress-spinner {
+          width: 31px;
+          height: 31px;
+          margin-left: 20px;
+        }
+      }
+
+      .ui-card-content {
+
+        .ui-float-label {
+            margin: 30px 0;
+        }
+
+      }
+    }
+  }
+
+  app-content-wrapper {
+    .kol-wrapper {
+      min-height: calc(100vh - 69px);
+      background-color: darken(color(dark, B900),10);
+    }
+  }
+}
+

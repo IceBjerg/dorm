@@ -1,0 +1,12 @@
+<div class="header">
+  <p-menu #menu [popup]="true" [model]="userMenus"></p-menu>
+
+  <div class="p-grid">
+    <div class="show-menu-icon" *ngIf="isLoggedIn && innerWidth < 768" (click)="openSideBar.emit(true)"><p><i class="fas fa-bars"></i></p></div>
+    <div class="p-col" *ngIf="innerWidth < 768" style="text-align: center"><p>Kolintéző</p></div>
+    <div class="p-col" *ngIf="innerWidth >= 768" style="text-align: left"><p>Kolintéző</p></div>
+    <div class="show-menu-icon" *ngIf="isLoggedIn" (click)="menu.toggle($event)"><p><i class="fas fa-user"></i></p></div>
+
+  </div>
+</div>
+

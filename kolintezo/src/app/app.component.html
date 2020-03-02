@@ -1,0 +1,21 @@
+<div [className]="theme">
+  <!-- auth -->
+
+  <ng-container *ngIf="authService.isLoggedIn()">
+    <app-kol-header [innerWidth]="innerWidth" (openSideBar)="menu.openSideBar($event)"></app-kol-header>
+    <div style="display: flex">
+      <app-side-menu #menu [innerWidth]="innerWidth"></app-side-menu>
+      <app-content-wrapper [innerWidth]="innerWidth"></app-content-wrapper>
+    </div>
+  </ng-container>
+
+  <!-- not auth -->
+  <ng-container *ngIf="!authService.isLoggedIn()">
+    <app-kol-header [innerWidth]="innerWidth" [isLoggedIn]="false"></app-kol-header>
+    <app-login></app-login>
+  </ng-container>
+</div>
+
+
+
+

@@ -1,0 +1,24 @@
+{
+    "name": "mark/restapi",
+    "description": "Restapi used by dorms",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Dobó Márk",
+            "email": "mark@marvinsystems.com"
+        }
+    ],
+    "require": {
+        "slim/slim": "4.*",
+        "slim/psr7": "^1.0",
+        "nyholm/psr7": "^1.2",
+        "nyholm/psr7-server": "^0.4.1",
+        "guzzlehttp/psr7": "^1.6",
+        "http-interop/http-factory-guzzle": "^1.0",
+        "laminas/laminas-diactoros": "^2.2",
+      "ext-json": "*",
+        "catfan/medoo": "^1.7",
+        "firebase/php-jwt": "^5.0",
+        "aspera/xlsx-reader": "^0.7.7"
+    }
+}
