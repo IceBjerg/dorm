@@ -42,7 +42,7 @@ export class SideMenuComponent implements OnInit {
           innerItems: []
         },
         {
-          displayName: 'Felhasználók',
+          displayName: 'Saját szoba',
           isExpanded: true,
           path: '/',
           isSelected: false,

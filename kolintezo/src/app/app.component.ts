@@ -9,7 +9,6 @@ import {AuthService} from './services/auth.service';
 export class AppComponent implements OnInit {
   innerWidth: number;
   title = 'kolintezo';
-  theme = 'dark';
 
   constructor(public authService: AuthService) {
   }

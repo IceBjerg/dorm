@@ -6,7 +6,7 @@ import {HttpClient, HttpParams} from '@angular/common/http';
   providedIn: 'root'
 })
 export class AuthService {
-  private isAuth: boolean;
+  private isAuth: boolean = undefined;
   private restapiUrl: string;
   private token: string;
 
@@ -20,7 +20,10 @@ export class AuthService {
     if (accessToken) {
       this.token = accessToken;
       this.isAuth = true;
+    } else {
+      this.isAuth = false;
     }
+    // this.isAuth = true;
   }
 
   public isLoggedIn() {

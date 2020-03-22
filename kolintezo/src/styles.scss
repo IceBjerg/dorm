@@ -41,6 +41,9 @@ $palettes: (
 
 body {
   margin: 0;
+  &.dark{
+    background-color: darken(color(dark, B600),3);
+  }
 }
 
 div {
@@ -52,23 +55,27 @@ div {
 @import '../node_modules/primeng/resources/themes/nova-dark/theme.css';
 .dark {
   color: color(dark, C200);
+
   app-kol-header {
     .header {
       width: 100%;
       background-color: color(dark, B900);
       border: 1px solid color(dark, B600);
       box-sizing: border-box;
+      align-items: center;
 
-
-      .p-grid{
+      .p-grid {
         margin-right: 0;
       }
+
       .show-menu-icon {
-        padding: 8px;
+        padding: 4px;
       }
+
       .show-menu-icon:hover {
         cursor: pointer;
       }
+
       p {
         font-size: x-large;
         margin: 0;
@@ -86,12 +93,15 @@ div {
       color: rgba(color(dark, C600), 0.95);
       border: 1px solid color(dark, B600);
       box-shadow: 0 0 10px color(dark, B000);
+
       .menu-item {
-         cursor: pointer;
+        cursor: pointer;
       }
+
       .menu-item:hover {
         background-color: rgba(color(dark, B800), 0.95);
       }
+
       .selected-menu-item {
         background-color: rgba(color(dark, B800), 0.95);
       }
@@ -102,15 +112,18 @@ div {
       padding: 0 0 0 0;
       color: rgba(color(dark, C600), 0.95);
       border: 1px solid color(dark, B600);
-      height: calc(100vh - 69px);
+      height: calc(100vh - 75px);
       width: 220px;
       overflow: auto;
+
       .menu-item {
         cursor: pointer;
       }
+
       .menu-item:hover {
         background-color: rgba(color(dark, B800), 0.95);
       }
+
       .selected-menu-item {
         background-color: rgba(color(dark, B800), 0.95);
       }
@@ -141,6 +154,7 @@ div {
         font-size: larger;
         padding: 20px;
       }
+
       .ui-card-footer {
         // text-align: center;
         .ui-progress-spinner {
@@ -153,7 +167,7 @@ div {
       .ui-card-content {
 
         .ui-float-label {
-            margin: 30px 0;
+          margin: 30px 0;
         }
 
       }
@@ -163,8 +177,27 @@ div {
   app-content-wrapper {
     .kol-wrapper {
       min-height: calc(100vh - 69px);
-      background-color: darken(color(dark, B900),10);
+      background-color: darken(color(dark, B900), 10);
     }
+  }
+
+  .ui-menu {
+    background-color: lighten(color(dark, B500), 5);
+
+    .ui-menuitem-link {
+      .ui-menuitem-text, .ui-menuitem-icon {
+        color: color(dark, C300);
+      }
+    }
+
+    .ui-menuitem-link:hover {
+      .ui-menuitem-text, .ui-menuitem-icon{
+        color: darken(color(dark, C300), 10);
+      }
+
+      background-color: lighten(color(dark, B500), 15);
+    }
+
   }
 }
 

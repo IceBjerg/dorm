@@ -13,6 +13,9 @@ import { MenuTreeComponent } from './components/side-menu/menu-tree/menu-tree.co
 import { LoginComponent } from './components/login/login.component';
 import {HttpClientModule} from '@angular/common/http';
 import { ContentWrapperComponent } from './components/content-wrapper/content-wrapper.component';
+import { ThemeSwitchComponent } from './components/theme-switch/theme-switch.component';
+import { AppRoutingModule } from './app-routing.module';
+import {OwnRoomComponent} from './components/own-room/own-room.component';
 
 
 @NgModule({
@@ -23,6 +26,8 @@ import { ContentWrapperComponent } from './components/content-wrapper/content-wr
     MenuTreeComponent,
     LoginComponent,
     ContentWrapperComponent,
+    ThemeSwitchComponent,
+    OwnRoomComponent,
   ],
   imports: [
     HttpClientModule,
@@ -37,7 +42,8 @@ import { ContentWrapperComponent } from './components/content-wrapper/content-wr
     ButtonModule,
     ProgressSpinnerModule,
     OverlayPanelModule,
-    MenuModule
+    MenuModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
