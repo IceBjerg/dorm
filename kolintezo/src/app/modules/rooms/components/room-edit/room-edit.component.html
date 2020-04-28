@@ -1,0 +1,31 @@
+<div class="main-content-wrapper">
+    <mat-card class="example-card">
+        <mat-card-header>
+            <div mat-card-avatar>
+                <button mat-icon-button routerLink=".."><i class="fas fa-arrow-left"></i></button>
+            </div>
+            <mat-card-title  *ngIf="isInitDone">{{room.id}}</mat-card-title>
+            <mat-card-subtitle>{{'ROOM.EDIT' | translate}}</mat-card-subtitle>
+        </mat-card-header>
+        <ng-container *ngIf="isInitDone">
+            <mat-card-content>
+                <app-room-name #name [model]="room.name" [required]="true"></app-room-name>
+                <br>
+                <app-room-building #building [model]="room.building" [required]="true"></app-room-building>
+                <br>
+                <app-room-floor #floor [model]="room.floor" [required]="true"></app-room-floor>
+                <br>
+                <app-room-capacity #capacity [model]="room.capacity" [required]="true"></app-room-capacity>
+                <br>
+
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-raised-button color="accent" routerLink="..">{{'ACTIONS.CANCEL' | translate}}</button>
+                <button mat-raised-button color="primary" (click)="save(name, building, floor, capacity)"
+                        [disabled]="!(name.ok && building.ok && floor.ok && capacity.ok)">{{'ACTIONS.SAVE' | translate}}</button>
+            </mat-card-actions>
+        </ng-container>
+    </mat-card>
+</div>
+
+

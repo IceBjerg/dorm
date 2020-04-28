@@ -1,3 +1,5 @@
 {
-  "restapiUrl": "http://localhost/szakdoga/restapi"
+  "restapiUrl": "http://localhost/szakdoga/restapi",
+  "formFieldAppearance": "outline",
+  "frontentURL": "http://localhost:4200"
 }

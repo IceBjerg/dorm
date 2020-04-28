@@ -1,0 +1,32 @@
+<div class="table-container mat-elevation-z8">
+
+
+    <table mat-table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8">
+
+        <ng-container matColumnDef="{{column}}" *ngFor="let column of displayedColumns">
+            <ng-container *ngIf="!isNumber(column)">
+                <th mat-header-cell *matHeaderCellDef> {{getTranslateId(column) | translate}} </th>
+                <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
+                <td mat-footer-cell *matFooterCellDef>
+                    <div style="margin-bottom: 10px">
+                        <button style="margin: 10px 10px 0 0" mat-raised-button color="accent" [disabled]="arrayEquals(initialUserPermissions, userPermissions)" (click)="cancel()"> {{'ACTIONS.CANCEL' | translate}}</button>
+                        <button style="margin: 10px 10px 0 0;" mat-raised-button color="primary" [disabled]="arrayEquals(initialUserPermissions, userPermissions)" (click)="save()"> {{'ACTIONS.SAVE' | translate}}</button>
+                    </div>
+                </td>
+            </ng-container>
+            <ng-container *ngIf="isNumber(column)">
+                <th mat-header-cell *matHeaderCellDef> {{getTranslateId(column) | translate}} </th>
+                <td mat-cell *matCellDef="let row">
+                    <mat-slide-toggle (change)="onChange($event, row, column)" color="primary" [checked]="hasPermission(row, column)"></mat-slide-toggle>
+                </td>
+                <td mat-footer-cell *matFooterCellDef>
+
+                </td>
+            </ng-container>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="table-row"></tr>
+        <tr mat-footer-row *matFooterRowDef="displayedColumns; sticky: true"></tr>
+    </table>
+</div>

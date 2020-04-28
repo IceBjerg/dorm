@@ -1,0 +1,336 @@
+{
+    "PAGINATOR": {
+        "ITEMS": "Items per page",
+        "NEXT": "Next page",
+        "PREVIOUS": "Previous page",
+        "FIRST": "First page",
+        "LAST": "Last page",
+        "RANGE": "{{start}} - {{end}}  /  {{length}}"
+    },
+    "MAIN": {
+        "GREETINGS": "Hello {{value}}!"
+    },
+    "LOGIN": {
+        "FAIL": "Unsuccessful login",
+        "MOTIVATE": "Log in! ",
+        "USERNAME": "Username",
+        "PASSWORD": "Password",
+        "LOGIN": "Log in"
+    },
+    "MENU": {
+        "MAIN": "Main page",
+        "OWN-ROOM": "Own room",
+        "USER-MNG": "User management",
+        "REGISTER": "Registration",
+        "USERS": "Users",
+        "ROOMS": "Rooms",
+        "ROOM-ASSIGNMENT": "Room assignment",
+        "SETTINGS": "Settings",
+        "LOGOUT": "Log out",
+        "PERMISSIONS": "Permissions",
+        "ROOM-MNG": "Room management",
+        "ERROR-REPORT": "Error report",
+        "ADD-EVENT": "Add an event",
+        "TASKS": "My tasks",
+        "TRANSLATE": "Translate",
+        "MAINTENANCE": "Maintenance",
+        "GUESTS": "Guests",
+        "EVENTS-VIEW": "Event browser",
+        "EVENTS-APPROVE": "Event approval",
+        "KEYS": "Keys"
+
+    },
+    "TRANSLATE": {
+        "SEND": "Send translation",
+        "EMPTY": "No more documents to translate",
+        "TRANSLATE": {
+            "SUCC": "The translate has been sent",
+            "ERR": "Failed to send translation"
+        }
+    },
+    "MAINTENANCE": {
+        "DONE": "Fixed",
+        "EMPTY": "There is no more reports in the system. ",
+        "SEND": {
+            "SUCC": "Successful save",
+            "ERR": "Unsuccessful save"
+        }
+    },
+    "OWN-ROOM": {
+        "DETAILS": "Room details",
+        "BUILDING": "Building",
+        "FLOOR": "Floor",
+        "FULLNESS": "Fullness",
+        "RESIDENTS": "Residents",
+        "ERROR": "Error occurred while requesting room details"
+    },
+    "NEW-PW": {
+        "PASSWORD": "Password",
+        "PASSWORD-AGAIN": "Password again",
+        "SAVE": "Save password",
+        "CHANGE": "Change password",
+        "ERROR": "Error occurred! "
+    },
+    "REGISTER": {
+        "SINGLE": "Register user",
+        "SINGLE-DETAIL": "Register single user to the system",
+        "SINGLE-REG": "Register",
+        "NAME": "Name",
+        "NEPTUN": "Neptun ID",
+        "EMAIL": "E-mail address",
+        "MULTI": "Register group of users",
+        "MULTI-DETAIL": "Register multiple users with Excel table",
+        "MULTI-REG": "Upload Excel (*.xlsx) file",
+        "SUCC": "Successful registration"
+    },
+    "USER": {
+        "NAME": "Name",
+        "NEPTUN": "Neptun ID",
+        "EMAIL": "E-mail",
+        "GENDER": {
+            "GENDER": "Gender",
+            "MALE": "Male",
+            "FEMALE": "Female"
+        },
+        "NATIONALITY": "Nationality",
+        "PASSWORD": "Password",
+        "PASSWORD2": "Password again"
+    },
+    "USERS": {
+        "FILTER": {
+            "FILTER": "Filter",
+            "PLACEHOLDER": "eg.: Will Smith"
+        },
+        "DELETE": {
+            "TITLE": "Delete user",
+            "TITLE-MUL": "Delete users",
+            "DESCRIPTION": "You won't be able to revert user deletion",
+            "DESCRIPTION-MUL": "You won't be able to revert user deletion",
+            "SUCC": "Successful deletion",
+            "ERR": "Unsuccessful deletion"
+        },
+        "SAVE": {
+            "SUCC": "User details saved",
+            "ERR": "Error occurred! "
+        }
+    },
+    "ROOM": {
+        "NEW": "Add",
+        "NEW-DESC": "Add new room to the system",
+        "ID": "ID",
+        "NAME": "Name",
+        "BUILDING": "Building",
+        "FLOOR": "Floor",
+        "CAPACITY": "Capacity",
+        "RESIDENTS": "Residents",
+        "FREE-USERS": "Users out of room",
+        "EDIT-USERS": "Add or remove users",
+        "EMPTY": "The room is empty",
+        "EDIT": "Edit room"
+    },
+    "ROOMS": {
+        "SAVE": {
+            "SUCC": "Successfully saved room",
+            "ERR": "Saving the room was unsuccessful"
+        },
+        "DELETE": {
+            "SUCC": "Successfully deleted room",
+            "ERR": "Deleting room was unsuccessful"
+        }
+    },
+    "ROOM-ASSIGN": {
+        "SAVE": {
+            "SUCC": "Room assignment has been saved! ",
+            "ERR": "Room assignment is not saved! "
+        }
+    },
+    "PERMISSION": {
+        "PERMISSION0": "Student",
+        "PERMISSION1": "User management",
+        "PERMISSION2": "Room management",
+        "PERMISSION3": "Room assignment",
+        "PERMISSION4": "Permissions",
+        "PERMISSION5": "Translator",
+        "PERMISSION6": "Maintenance",
+        "PERMISSION7": "Reception",
+        "PERMISSION8": "Browse events",
+        "PERMISSION9": "Dorm leader",
+        "PERMISSION10": "Student Union",
+        "SAVE": {
+            "SUCC": "Permissions saved",
+            "ERR": "Unexpected error! "
+        }
+    },
+    "ERROR-REPORT": {
+        "TITLE": "Dormitory error report",
+        "SUBTITLE": "towards the maintainer",
+        "REPORT-TYPE": "Report type",
+        "DOOR-HANDLE": "Bad door handle",
+        "SINK": "Sink stacks",
+        "BULB": "Bulb change",
+        "OTHER": "Other",
+        "LOCATION": "Location of the error",
+        "TEXT": "Description of the error",
+        "TRANSLATE-NEEDED": "Translate",
+        "NEED-TRANSLATE": "The report is written in English",
+        "NOT-NEED-TRANSLATE": "The report is written in Hungarian",
+        "HISTORY-TITLE": "History",
+        "HISTORY-SUBTITLE": "Reported errors and their status",
+        "HISTORY-EMPTY": "The history is empty",
+        "REPORT-DATE": "Report date",
+        "STATUS": "Status",
+        "HANG": {
+            "TRANSLATE": "Waiting for translator",
+            "MAINTENANCE": "Waiting for maintainer",
+            "SOLVED": "Done"
+        },
+        "SEND": {
+            "SUCC": "The error report has been sent",
+            "ERR": "Unexpected error! "
+        }
+    },
+    "GUESTS": {
+        "ACTIVE": "Active guests in the dorm",
+        "HISTORY": "History",
+        "START-TIME": "Arrival",
+        "END-TIME": "Leaving",
+        "GUEST": {
+            "NAME": "Guest name",
+            "ID": "Guest ID"
+        },
+        "REPORTER": "Reporter",
+        "ENDED-BY": "Ended by",
+        "HOST": {
+            "ID": "Host neptun ID",
+            "NAME": "Host name"
+        },
+        "ADD": {
+            "SUCC": "Successfully added guest",
+            "ERR": "Unexpected error! Guest is not in the system yet! "
+        },
+        "LEAVE": {
+            "SUCC": "The guest has left! ",
+            "ERR": "Unexpected error! Guest is still in the system! ",
+            "NOW": "Leave now"
+        },
+        "NEW-GUEST": {
+            "TITLE": "New guest",
+            "SUBTITLE": "Reporting a new guest to the system"
+        }
+    },
+    "EVENTS": {
+        "ADD": {
+            "TITLE": "Add new event",
+            "SUBTITLE": "as the responsible of the event",
+            "EVENT": {
+                "NAME": "Name of the event",
+                "PARTIC-NUM": "Participant number",
+                "DATE": "Event date (from-to)",
+                "LOC": "Event location",
+                "DESC": "Description of the event",
+                "PARTIC-DORM": "List of attendees from the dorm",
+                "PARTIC-OUT": "List of outsider attendees"
+            },
+            "ORGANIZER-TEL": "Phone number",
+            "SUCC": "Successfully registered event",
+            "ERR": "Unexpected error! The event is not in the system yet! "
+        },
+        "OWN-HISTORY": "Own events",
+        "EVENT": {
+            "ACTION": {
+                "APPROVAL": "Status"
+            },
+            "APPROVED": "Already approved",
+            "DECLINED": "Already declined",
+            "NAME": "Name of the event",
+            "DATE": "Event date",
+            "STATUS": "Status",
+            "ORGANIZER": {
+                "NAME": "Name of the responsible user",
+                "NEPTUN": "Neptun ID of the responsible user",
+                "EMAIL": "E-mail address of the responsible user",
+                "TELEPHONE": "Phone number of the responsible user"
+            },
+            "PARTICIPANT-NUM": "Participant number",
+            "DESCRIPTION": "Event description",
+            "LOCATION": "Event location",
+            "PARTICIPANTS": {
+                "DORM": "List of attendees from the dorm",
+                "OUT": "List of outsider attendees"
+            },
+            "APPROVER": {
+                "OV": "Dorm leader",
+                "HOK": "Student Union"
+            }
+        },
+        "UPDATE": {
+            "SUCC": "Successful change",
+            "ERR": "Unexpected error"
+        }
+    },
+    "KEYS": {
+        "BORROWER": "Neptun code of borrower",
+        "COLUMN": {
+            "KEY-ID": "Key",
+            "USER": "User",
+            "START": "Start",
+            "END": "End",
+            "ACC-BY": "Accepted by",
+            "END-BY": "Ended by",
+            "PERIOD": "Period"
+        },
+        "ACTION": {
+            "TITLE": "Action",
+            "RECEIVED": "Key received",
+            "TAKE": "Give away key"
+        },
+        "RECEIVED": {
+            "SUCC": "Key received",
+            "ERR": "Unexpected error"
+        },
+        "TAKEN": {
+            "SUCC": "Key is given away",
+            "ERR": "Unexpected error"
+        },
+        "HISTORY": "History",
+        "ACTUAL": "Keys",
+        "KEY1": "Conference 1 room",
+        "KEY2": "Conference 2 room",
+        "KEY3": "Gym",
+        "KEY4": "Fitness room"
+    },
+    "ACTIONS": {
+        "OK": "Ok",
+        "SAVE": "Save",
+        "HIDE": "Hide",
+        "DELETE": "Delete",
+        "SEND": "Send",
+        "CANCEL": "Cancel",
+        "ADD": "Add",
+        "APPROVE": "Approve",
+        "DECLINE": "Decline",
+        "KICK-OUT": "Evacuate room"
+    },
+    "ERRORS": {
+        "ERROR": "Error",
+        "REQ": "Required field",
+        "NOT-EQ": "Not equals",
+        "SHORT": "Too short",
+        "LOWC": "Must contain lowercase character",
+        "UPPERC": "Must contain uppercase character",
+        "NUM": "Must contain a number",
+        "FORMAT": "Unexpected formate",
+        "TRY-LATER": "Could not send the e-mail. Try again later. ",
+        "TAKEN": "Username or e-mail already in use",
+        "ONLY-NUMBER": "Expects an integer",
+        "LARGE": "Too long",
+        "FILE_FORMAT": "Bad file format",
+        "UPLOAD": "Error occurred during upload",
+        "ROOM-ID": "Has to contain only numbers and letters",
+        "UNKNOWN": "Unknown error! "
+
+    },
+    "FILTER": {
+        "LABEL": "Filter"
+    }
+}

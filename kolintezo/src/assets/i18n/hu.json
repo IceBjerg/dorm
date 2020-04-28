@@ -1,0 +1,338 @@
+{
+    "PAGINATOR": {
+        "ITEMS": "Sorok száma oldalanként",
+        "NEXT": "Következő oldal",
+        "PREVIOUS": "Előző oldal",
+        "FIRST": "Első oldal",
+        "LAST": "Utolsó oldal",
+        "RANGE": "{{start}} - {{end}}  /  {{length}}"
+    },
+    "MAIN": {
+        "GREETINGS": "Szia {{value}}!"
+    },
+    "LOGIN": {
+        "FAIL": "A bejelentkezés nem sikerült. ",
+        "MOTIVATE": "Jelentkezz be! ",
+        "USERNAME": "Felhasználónév",
+        "PASSWORD": "Jelszó",
+        "LOGIN": "Bejelentkezés"
+    },
+    "MENU": {
+        "MAIN": "Főoldal",
+        "OWN-ROOM": "Saját szoba",
+        "USER-MNG": "Felhasználókezelés",
+        "REGISTER": "Regisztráció",
+        "USERS": "Felhasználók",
+        "ROOMS": "Szobák",
+        "ROOM-ASSIGNMENT": "Szobabeosztás",
+        "SETTINGS": "Beállítások",
+        "LOGOUT": "Kijelentkezés",
+        "PERMISSIONS": "Jogosultságok",
+        "ROOM-MNG": "Szobakezelés",
+        "ERROR-REPORT": "Hibabejelentő",
+        "ADD-EVENT": "Rendezvénybejelentő",
+        "TASKS": "Feladataim",
+        "TRANSLATE": "Fordítás",
+        "MAINTENANCE": "Karbantartás",
+        "GUESTS": "Vendégfogadás",
+        "EVENTS-VIEW": "Rendezvényböngésző",
+        "EVENTS-APPROVE": "Bejelentett rendezvények",
+        "KEYS": "Kulcsfelvétel"
+
+    },
+    "TRANSLATE": {
+        "SEND": "Fordítás beküldése",
+        "EMPTY": "Nincs több fordításra váró dokumentum",
+        "TRANSLATE": {
+            "SUCC": "A fordtás beküldése megtörtént",
+            "ERR": "A beküldés meghiúsult"
+        }
+    },
+    "MAINTENANCE": {
+        "DONE": "A javítás megtörtént",
+        "EMPTY": "Nincs több bejelentett hiba",
+        "SEND": {
+            "SUCC": "Sikeres javítás",
+            "ERR": "Sikertelen mentés"
+        }
+    },
+    "OWN-ROOM": {
+        "DETAILS": "Szoba adatok",
+        "BUILDING": "Épület",
+        "FLOOR": "Emelet",
+        "FULLNESS": "Telítettség",
+        "RESIDENTS": "Lakók",
+        "ERROR": "Nem sikerült lekérni a szobaadatokat"
+    },
+    "NEW-PW": {
+        "PASSWORD": "Jelszó",
+        "PASSWORD-AGAIN": "Jelszó Újra",
+        "SAVE": "Jelszó mentése",
+        "CHANGE": "Jelszó változtatás",
+        "ERROR": "Hiba történt a jelszó mentése során"
+    },
+    "REGISTER": {
+        "SINGLE": "Felhasználó regisztrálása",
+        "SINGLE-DETAIL": "Egy személy regisztrálása a rendszerbe",
+        "SINGLE-REG": "Felhasználó regisztrálása",
+        "NAME": "Név",
+        "NEPTUN": "Neptun azonosító",
+        "EMAIL": "E-mail cím",
+        "MULTI": "Csoportos regisztráció",
+        "MULTI-DETAIL": "Csoportos regisztráció Excel táblával",
+        "MULTI-REG": "Excel (*.xlsx) fájl feltöltése",
+        "SUCC": "Sikeres regisztráció"
+    },
+    "USER": {
+        "NAME": "Név",
+        "NEPTUN": "Neptun azonosító",
+        "EMAIL": "Email-cím",
+        "GENDER": {
+            "GENDER": "Nem",
+            "MALE": "Férfi",
+            "FEMALE": "Nő"
+        },
+        "NATIONALITY": "Nemzetiség",
+        "PASSWORD": "Jelszó",
+        "PASSWORD2": "Jelszó újra"
+    },
+    "USERS": {
+        "FILTER": {
+            "FILTER": "Szűrő",
+            "PLACEHOLDER": "pl. Kovács József"
+        },
+        "DELETE": {
+            "TITLE": "Felhasználó törlése",
+            "TITLE-MUL": "Felhasználók törlése",
+            "DESCRIPTION": "A felhasználó törlését nem tudja később visszavonni! ",
+            "DESCRIPTION-MUL": "A felhasználói fiókok törlését nem tudja később visszavonni! ",
+            "SUCC": "Sikeres törlés",
+            "ERR": "Sikertelen törlés! "
+        },
+        "SAVE": {
+            "SUCC": "A felhasználó mentése sikeres",
+            "ERR": "A felhasználó mentése sikertelen! "
+        }
+    },
+    "ROOM": {
+        "NEW": "Hozzáadás",
+        "NEW-DESC": "Új szoba hozzáadása a rendszerhez",
+        "ID": "Azonosító",
+        "NAME": "Név",
+        "BUILDING": "Épület",
+        "FLOOR": "Szint",
+        "CAPACITY": "Kapacitás",
+        "RESIDENTS": "Bent lakók",
+        "FREE-USERS": "Nem beosztottak",
+        "EDIT-USERS": "Szoba módosítása",
+        "EMPTY": "A szoba üres",
+        "EDIT": "Szoba szerkesztése"
+    },
+    "ROOMS": {
+        "SAVE": {
+            "SUCC": "A szoba mentése sikeres",
+            "ERR": "A szoba mentése sikertelen"
+        },
+        "DELETE": {
+            "SUCC": "A szoba törlése sikeres",
+            "ERR": "A szoba törlése sikertelen"
+        }
+    },
+    "ROOM-ASSIGN": {
+        "SAVE": {
+            "SUCC": "A szobabeosztás mentése sikeres",
+            "ERR": "Hiba a mentés közben! "
+        }
+    },
+    "PERMISSION": {
+        "PERMISSION0": "Hallgató",
+        "PERMISSION1": "Felhasználók kezelése",
+        "PERMISSION2": "Szobák kezelése",
+        "PERMISSION3": "Szobabeosztás",
+        "PERMISSION4": "Jogosultságok",
+        "PERMISSION5": "Fordító",
+        "PERMISSION6": "Karbantartó",
+        "PERMISSION7": "Porta",
+        "PERMISSION8": "Rendezvények",
+        "PERMISSION9": "Osztályvezető",
+        "PERMISSION10": "DB Elnök",
+        "SAVE": {
+            "SUCC": "A jogosultságok felülírása megtörtént",
+            "ERR": "Váratlan hiba! "
+        }
+    },
+    "ERROR-REPORT": {
+        "TITLE": "Kollégiumi hibabejelentő",
+        "SUBTITLE": "a karbantartók felé",
+        "REPORT-TYPE": "Bejelentés típusa",
+        "DOOR-HANDLE": "Rossz kilincs",
+        "SINK": "Eldugult lefolyó",
+        "BULB": "Kiégett villanykörte",
+        "OTHER": "Egyéb",
+        "LOCATION": "A hiba helye",
+        "TEXT": "A hiba leírása",
+        "TRANSLATE-NEEDED": "Fordítás",
+        "NEED-TRANSLATE": "A hibát angolul jelentem be",
+        "NOT-NEED-TRANSLATE": "A hibát magyarul jelentem be",
+        "HISTORY-TITLE": "Előzményeim",
+        "HISTORY-SUBTITLE": "Saját hibajegyek és állapotuk",
+        "HISTORY-EMPTY": "Önnek még nincsenek előzményei",
+        "REPORT-DATE": "Bejelentés időpontja",
+        "STATUS": "Állapot",
+        "HANG": {
+            "TRANSLATE": "Fordításra vár",
+            "MAINTENANCE": "Karbantartóra vár",
+            "SOLVED": "Kész"
+        },
+        "SEND": {
+            "SUCC": "A hiba bejelentése megtörtént",
+            "ERR": "Váratlan hiba! "
+        }
+    },
+    "GUESTS": {
+        "ACTIVE": "Jelenleg a kollégiumban tartózkodó vendégek",
+        "HISTORY": "Már távozott vendégek",
+        "START-TIME": "Érkezés",
+        "END-TIME": "Távozás",
+        "GUEST": {
+            "NAME": "Vendég neve",
+            "ID": "Vendég okmányszáma"
+        },
+        "REPORTER": "Bejelentő",
+        "ENDED-BY": "Kijelentő",
+        "HOST": {
+            "ID": "Fogadó Neptun kódja",
+            "NAME": "Fogadó neve"
+        },
+        "ADD": {
+            "SUCC": "A vendég hozzáadása sikeres. ",
+            "ERR": "A vendég hozzáadása nem sikerült. "
+        },
+        "LEAVE": {
+            "SUCC": "A vendég kijelentése sikeres. ",
+            "ERR": "A vendég kijelentése nem sikerült. ",
+            "NOW": "A vendég távozik"
+        },
+        "NEW-GUEST": {
+            "TITLE": "Új vendég",
+            "SUBTITLE": "Új vendég bejelentése a rendszerbe"
+        }
+    },
+    "EVENTS": {
+        "ADD": {
+            "TITLE": "Új rendezvény bejelentése,",
+            "SUBTITLE": "mint a rendezvény felelőse",
+            "EVENT": {
+                "NAME": "Rendezvény neve",
+                "PARTIC-NUM": "Várható létszám",
+                "DATE": "A rendezvény időpontja (tól-ig)",
+                "LOC": "A rendezvény helyszíne",
+                "DESC": "A rendevény részletes leírása",
+                "PARTIC-DORM": "Kollégista résztvevők felsorolása",
+                "PARTIC-OUT": "Külsős résztvevők felsorolása"
+            },
+            "ORGANIZER-TEL": "Az Ön telefonszáma",
+            "SUCC": "A rendezvény bejelentése megtörtént",
+            "ERR": "A rendezvény bejelentése meghiúsult"
+        },
+        "OWN-HISTORY": "Saját bejelentett rendezvényeim",
+        "EVENT": {
+            "ACTION": {
+                "APPROVAL": "Státusz"
+            },
+            "APPROVED": "Már elfogadva",
+            "DECLINED": "Már elutasítva",
+            "NAME": "Rendezvény neve",
+            "DATE": "Rendezvény időpontja",
+            "STATUS": "Státusz",
+            "ORGANIZER": {
+                "NAME": "Servező neve",
+                "NEPTUN": "Servező Neptun azonosítója",
+                "EMAIL": "Servező e-mail címe",
+                "TELEPHONE": "Servező telefonos elérhetősége"
+            },
+            "PARTICIPANT-NUM": "Várható létszám",
+            "DESCRIPTION": "Rendezvény részletes leírása",
+            "LOCATION": "A rendezvény helyszíne",
+            "PARTICIPANTS": {
+                "DORM": "Kollégista résztvevők felsorolása",
+                "OUT": "Külsős résztvevők felsorolása"
+            },
+            "APPROVER": {
+                "OV": "Osztályvezető",
+                "HOK": "Diákbizottság"
+            }
+        },
+        "UPDATE": {
+            "SUCC": "Sikeres módosítás",
+            "ERR": "Sikertelen módosítás"
+        }
+    },
+    "KEYS": {
+        "BORROWER": "A felelős neptun kódja",
+        "COLUMN": {
+            "KEY-ID": "Kulcs",
+            "USER": "Felelős",
+            "START": "Kezdés",
+            "END": "Vége",
+            "ACC-BY": "Odaadta",
+            "END-BY": "Visszavette",
+            "PERIOD": "Időszak"
+        },
+        "ACTION": {
+            "TITLE": "Művelet",
+            "RECEIVED": "Visszahozás",
+            "TAKE": "Kiadás"
+        },
+        "RECEIVED": {
+            "SUCC": "Sikeres mentés",
+            "ERR": "Sikertelen mentés"
+        },
+        "TAKEN": {
+            "SUCC": "A kulcsot kiadtad",
+            "ERR": "Meghiúsult"
+        },
+        "HISTORY": "Már rendezett bejegyzések",
+        "ACTUAL": "Kulcsok",
+        "KEY1": "Konferencia 1-es terem",
+        "KEY2": "Konferencia 2-es terem",
+        "KEY3": "Konditerem",
+        "KEY4": "Fitness terem"
+    },
+    "ACTIONS": {
+        "OK": "Rendben",
+        "SAVE": "Mentés",
+        "HIDE": "Elrejt",
+        "DELETE": "Törlés",
+        "SEND": "Beküldés",
+        "CANCEL": "Mégsem",
+        "ADD": "Hozzáadás",
+        "APPROVE": "Elfogad",
+        "DECLINE": "Elutasít",
+        "KICK-OUT": "Szoba kiürítése"
+    },
+    "ERRORS": {
+        "ERROR": "Hiba",
+        "REQ": "Kötelező mező",
+        "NOT-EQ": "Nem egyeznek meg",
+        "SHORT": "Túl rövid",
+        "LOWC": "Kis betűt is tartalmaznia kell",
+        "UPPERC": "Nagy betűt is tartalmaznia kell",
+        "NUM": "Számot is tartalmaznia kell",
+        "FORMAT": "Nem megfelő formátum",
+        "TRY-LATER": "Az email-t nem sikerült kiküldeni, próbálja újra. ",
+        "TAKEN": "Létező felhasználó vagy e-mail cím. ",
+        "ONLY-NUMBER": "Egész számot adjon meg",
+        "LARGE": "Az érték túl hosszú",
+        "FILE_FORMAT": "Rossz fájlformátum",
+        "UPLOAD": "A feltöltés meghiúsult",
+        "ROOM-ID": "Csak betűt és számot tartalmazhat",
+        "UNKNOWN": "Ismeretlen hiba! "
+
+    },
+
+    "FILTER": {
+        "LABEL": "Szűrés"
+    }
+
+}

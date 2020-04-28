@@ -1,0 +1,36 @@
+<div class="main-content-wrapper">
+  <ng-container *ngIf="room !== undefined && room">
+    <mat-card class="example-card">
+      <mat-card-header>
+        <mat-card-title>{{room.name}}</mat-card-title>
+        <mat-card-subtitle>{{'OWN-ROOM.DETAILS' | translate}}:</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <table>
+          <tbody>
+            <tr>
+              <td class="table-left">{{'OWN-ROOM.BUILDING' | translate}}:</td>
+              <td>{{room.building}}</td>
+            </tr>
+            <tr>
+              <td class="table-left">{{'OWN-ROOM.FLOOR' | translate}}:</td>
+              <td>{{room.floor}}</td>
+            </tr>
+            <tr>
+              <td class="table-left">{{'OWN-ROOM.FULLNESS' | translate}}:</td>
+              <td>{{room?.residents?.length}} / {{room.capacity}}</td>
+            </tr>
+            <tr *ngFor="let resident of room.residents; let i = index">
+              <td class="table-left"> {{ i==0? ('OWN-ROOM.RESIDENTS' | translate) + ':'  : ''}}</td>
+              <td>{{resident}}</td>
+            </tr>
+
+          </tbody>
+        </table>
+      </mat-card-content>
+    </mat-card>
+  </ng-container>
+  <ng-container *ngIf="room !== undefined && !room">
+    <mat-card class="example-card">Nincs szobád.</mat-card>
+  </ng-container>
+</div>

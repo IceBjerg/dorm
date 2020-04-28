@@ -1,0 +1,8 @@
+<mat-form-field [appearance]="configService.getData('formFieldAppearance')">
+    <mat-label>{{'ERROR-REPORT.TRANSLATE-NEEDED' | translate}}</mat-label>
+    <mat-select [required]="required" [formControl]="fC" >
+        <mat-option *ngFor="let row of values" [value]="row.key" [disabled]="row.key === null">
+            {{row.value | translate}}
+        </mat-option>
+    </mat-select>
+</mat-form-field>

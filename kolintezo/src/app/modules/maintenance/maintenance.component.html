@@ -1,0 +1,24 @@
+<div class="main-content-wrapper">
+
+    <ng-container *ngIf="!isLoaded">
+        <i class="fas fa-spinner rotate"></i>
+    </ng-container>
+
+    <ng-container *ngIf="isLoaded">
+        <mat-card class="mat-card-container" *ngFor="let row of data" >
+            <h2> {{row.report_date}}</h2>
+                <div style="display: flex; flex-direction: column; flex-grow: 1">
+                    <app-report-type [model]="row.report_type" [disabled]="true"></app-report-type>
+                    <app-report-loc [model]="row.location" [disabled]="true"></app-report-loc>
+                    <app-report-text [model]="row.issue ? row.issue : '-'" [disabled]="true"></app-report-text>
+                </div>
+                    <button mat-raised-button color="primary"
+                            (click)="maintenanceDone(row.id)">{{'MAINTENANCE.DONE' | translate}}</button>
+        </mat-card>
+        <mat-card *ngIf="data.length === 0">
+            <mat-card-header>
+                {{'MAINTENANCE.EMPTY' | translate}}
+            </mat-card-header>
+        </mat-card>
+    </ng-container>
+</div>

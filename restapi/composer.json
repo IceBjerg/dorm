@@ -15,10 +15,10 @@
         "nyholm/psr7-server": "^0.4.1",
         "guzzlehttp/psr7": "^1.6",
         "http-interop/http-factory-guzzle": "^1.0",
-        "laminas/laminas-diactoros": "^2.2",
-      "ext-json": "*",
-        "catfan/medoo": "^1.7",
+        "ext-json": "*",
         "firebase/php-jwt": "^5.0",
-        "aspera/xlsx-reader": "^0.7.7"
+        "aspera/xlsx-reader": "^0.7.7",
+        "ext-pdo": "*",
+        "mailjet/mailjet-apiv3-php": "^1.4"
     }
 }

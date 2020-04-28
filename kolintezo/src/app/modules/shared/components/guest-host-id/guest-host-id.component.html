@@ -1,0 +1,18 @@
+<mat-form-field [appearance]="configService.getData('formFieldAppearance')">
+    <mat-label>{{label | translate}}</mat-label>
+    <mat-select [required]="required" [formControl]="formControl" (closed)="resetSearch()">
+        <mat-form-field style="width: 100%;" appearance="fill">
+            <mat-label>{{'FILTER.LABEL' | translate}}</mat-label>
+            <input class="mat-text-own" [(ngModel)]="filterWord" matInput type="text" (keyup)="filterResults()"
+                   [matAutocomplete]="autocomplete">
+        </mat-form-field>
+        <mat-option *ngFor="let row of values" [value]="row.key">
+            {{row.value}}
+        </mat-option>
+    </mat-select>
+    <mat-error *ngIf="formControl.invalid">
+        {{responseHandler.getErrorMsg(formControl) | translate}}
+    </mat-error>
+    <mat-autocomplete #autocomplete>
+    </mat-autocomplete>
+</mat-form-field>

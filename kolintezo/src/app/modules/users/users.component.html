@@ -1,0 +1,79 @@
+<div class="table-container mat-elevation-z8">
+    <mat-form-field style="width: calc(100% - 20px); margin: 0 10px; box-sizing: content-box">
+        <mat-label>{{'USERS.FILTER.FILTER' | translate}}</mat-label>
+        <input matInput [(ngModel)]="dataSource.filter" [placeholder]="'USERS.FILTER.PLACEHOLDER' | translate" [matAutocomplete]="auto">
+    </mat-form-field>
+    <mat-autocomplete #auto>
+
+    </mat-autocomplete>
+    <table mat-table [dataSource]="dataSource" multiTemplateDataRows matSort>
+        <ng-container matColumnDef="{{column}}" *ngFor="let column of columnsToDisplay">
+            <ng-container *ngIf="column !== 'checkbox'">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header id="{{column}}"> {{getColumnName(column) | translate}} </th>
+                <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
+            </ng-container>
+            <ng-container *ngIf="column === 'checkbox'">
+                <th mat-header-cell *matHeaderCellDef style="width: 50px;">
+                    <mat-checkbox (change)="$event ? masterToggle() : null" color="primary"
+                                  [checked]="selection.hasValue() && isAllSelected()"
+                                  [indeterminate]="selection.hasValue() && !isAllSelected()">
+                    </mat-checkbox>
+                </th>
+                <td mat-cell *matCellDef="let row">
+                    <mat-checkbox (click)="$event.stopPropagation()" color="primary"
+                                  (change)="$event ? selection.toggle(row) : null"
+                                  [checked]="selection.isSelected(row)">
+                    </mat-checkbox>
+                </td>
+            </ng-container>
+        </ng-container>
+        <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+        <ng-container matColumnDef="expandedDetail">
+            <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay.length">
+                <div class="table-details"
+                     [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+                    <mat-divider></mat-divider>
+                    <div>
+                        <app-user-full-name #name model="{{element.name}}" required="true"></app-user-full-name> <br>
+                        <app-user-email #email model="{{element.email}}" required="true"></app-user-email><br>
+                        <app-user-gender #gender model="{{element.gender}}" required="true"></app-user-gender><br>
+                        <app-user-nationality #nat model="{{element.nationality}}"></app-user-nationality><br>
+                    </div>
+                    <div class="user-action-button-wrapper">
+                        <div style="flex-grow: 1"></div>
+                        <div style="text-align: end;">
+                            <button class="user-action-button" mat-raised-button color="warn" (click)="deleteExpanded(element)"> Törlés</button>
+                            <button class="user-action-button" mat-raised-button color="primary" (click)="saveExpanded(name, email, gender, nat, element)"
+                                [disabled]="!(name.ok && email.ok && gender.ok && nat.ok)"> {{'ACTIONS.SAVE' | translate}}</button>
+<!--                            <button class="user-action-button" mat-raised-button color="primary" (click)="forgottenPw(element)"> Elfelejtett jelszó-->
+<!--                            </button>-->
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="columnsToDisplay; sticky: true"></tr>
+        <tr mat-row *matRowDef="let element; columns: columnsToDisplay;"
+            class="table-row"
+            [class.example-expanded-row]="expandedElement === element"
+            (click)="expandedElement = expandedElement === element ? null : element">
+        </tr>
+        <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+    </table>
+    <div class="mat-paginator-sticky">
+        <mat-divider></mat-divider>
+        <div style="display: flex; flex-direction: row; height: 58px;" class="mat-paginator">
+            <div style="display: flex; align-items: center; margin: 0 10px;">
+                <button mat-raised-button color="warn" [disabled]="selection.selected.length === 0"
+                (click)="deleteSelected()">{{'ACTIONS.DELETE' | translate}}</button>
+            </div>
+            <div style="flex-grow: 1">
+                <mat-paginator [pageSizeOptions]="pageSizeOptions" showFirstLastButtons color="primary" ></mat-paginator>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>

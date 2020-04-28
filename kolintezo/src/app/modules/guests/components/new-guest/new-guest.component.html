@@ -1,0 +1,20 @@
+<div class="main-content-wrapper">
+    <mat-card class="mat-card-container" *ngIf="isLoaded">
+        <mat-card-header>
+            <div mat-card-avatar><button mat-icon-button routerLink=".."><i class="fas fa-arrow-left"></i></button></div>
+            <mat-card-title>{{'GUESTS.NEW-GUEST.TITLE' | translate}}</mat-card-title>
+            <mat-card-subtitle>{{'GUESTS.NEW-GUEST.SUBTITLE' | translate}}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <div style="display: flex; flex-direction: column">
+                <app-guest-host-id #host [values]="ids" [required]="true" label="GUESTS.HOST.ID"></app-guest-host-id>
+                <app-guest-guest-name #gname [required]="true"></app-guest-guest-name>
+                <app-guest-guest-id #gid [required]="true"></app-guest-guest-id>
+            </div>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-raised-button routerLink=".." color="accent">{{'ACTIONS.CANCEL' | translate}}</button>
+            <button mat-raised-button [disabled]="!(host.ok && gname.ok && gid.ok)" color="primary" (click)="addGuest(host, gname, gid)">{{'ACTIONS.ADD' | translate}}</button>
+        </mat-card-actions>
+    </mat-card>
+</div>

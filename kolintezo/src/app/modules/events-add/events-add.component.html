@@ -1,0 +1,27 @@
+<div class="main-content-wrapper">
+    <mat-card class="mat-card-container">
+        <mat-card-header>
+            <mat-card-title>{{'EVENTS.ADD.TITLE' | translate}}</mat-card-title>
+            <mat-card-subtitle>{{'EVENTS.ADD.SUBTITLE' | translate}}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <div style="display: flex; flex-direction: column">
+                <app-basic-text-input #name [required]="true" label="EVENTS.ADD.EVENT.NAME" placeholder="EVENTS.ADD.EVENT.NAME"></app-basic-text-input>
+                <app-basic-text-input #num [required]="true" label="EVENTS.ADD.EVENT.PARTIC-NUM" placeholder="EVENTS.ADD.EVENT.PARTIC-NUM"></app-basic-text-input>
+                <app-basic-text-input #date [required]="true" label="EVENTS.ADD.EVENT.DATE" placeholder="EVENTS.ADD.EVENT.DATE"></app-basic-text-input>
+                <app-basic-text-input #location [required]="true" label="EVENTS.ADD.EVENT.LOC" placeholder="EVENTS.ADD.EVENT.LOC"></app-basic-text-input>
+                <app-basic-text-input #tel [required]="true" label="EVENTS.ADD.ORGANIZER-TEL" placeholder="EVENTS.ADD.ORGANIZER-TEL"></app-basic-text-input>
+                <app-basic-textarea #desc [required]="true" [maxLength]="5000" label="EVENTS.ADD.EVENT.DESC" placeholder="EVENTS.ADD.EVENT.DESC" rows="10"></app-basic-textarea>
+                <app-basic-textarea #particDorm [required]="true" [maxLength]="5000" label="EVENTS.ADD.EVENT.PARTIC-DORM" placeholder="EVENTS.ADD.EVENT.PARTIC-DORM" rows="5"></app-basic-textarea>
+                <app-basic-textarea #particOut [required]="false" [maxLength]="5000" label="EVENTS.ADD.EVENT.PARTIC-OUT" placeholder="EVENTS.ADD.EVENT.PARTIC-OUT" rows="5"></app-basic-textarea>
+            </div>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-raised-button [disabled]="!(name.ok && num.ok && date.ok && location.ok && tel.ok && desc.ok && particDorm.ok && particOut.ok)"
+                    color="primary" (click)="addEvent()">{{'ACTIONS.ADD' | translate}}</button>
+        </mat-card-actions>
+    </mat-card>
+
+    <h2 style="margin-top: 20px"> {{'EVENTS.OWN-HISTORY' | translate}}</h2>
+    <app-event-history #eventHist [showAll]="false"></app-event-history>
+</div>

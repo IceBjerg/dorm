@@ -1,0 +1,11 @@
+<h1 mat-dialog-title>
+  {{data.title | translate}}
+</h1>
+<div mat-dialog-content>
+  <p [innerHTML]="data.content | translate"></p>
+</div>
+<div mat-dialog-actions >
+  <div style="flex-grow: 1"></div>
+  <button color="accent" mat-button *ngIf="data?.noText" [mat-dialog-close]="false" cdkFocusInitial>{{data?.noText | translate}}</button>
+  <button color="{{data?.noText ? 'warn' : 'primary'}}" mat-stroked-button [mat-dialog-close]="true" cdkFocusInitial>{{data.yesText | translate}}</button>
+</div>

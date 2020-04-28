@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="WEB_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/spec" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" />
+      <excludeFolder url="file://$MODULE_DIR$/restapi/vendor/aspera/xlsx-reader" />
+      <excludeFolder url="file://$MODULE_DIR$/restapi/vendor/box/spout" />
+      <excludeFolder url="file://$MODULE_DIR$/restapi/vendor/catfan/medoo" />
+      <excludeFolder url="file://$MODULE_DIR$/restapi/vendor/composer" />
+      <excludeFolder url="file://$MODULE_DIR$/restapi/vendor/fig/http-message-util" />
+      <excludeFolder url="file://$MODULE_DIR$/restapi/vendor/firebase/php-jwt" />
+      <excludeFolder url="file://$MODULE_DIR$/restapi/vendor/guzzlehttp/guzzle" />
+      <excludeFolder url="file://$MODULE_DIR$/restapi/vendor/guzzlehttp/promises" />
+      <excludeFolder url="file://$MODULE_DIR$/restapi/vendor/guzzlehttp/psr7" />
+      <excludeFolder url="file://$MODULE_DIR$/restapi/vendor/http-interop/http-factory-guzzle" />
+      <excludeFolder url="file://$MODULE_DIR$/restapi/vendor/laminas/laminas-diactoros" />
+      <excludeFolder url="file://$MODULE_DIR$/restapi/vendor/laminas/laminas-zendframework-bridge" />
+      <excludeFolder url="file://$MODULE_DIR$/restapi/vendor/mailjet/mailjet-apiv3-php" />
+      <excludeFolder url="file://$MODULE_DIR$/restapi/vendor/nikic/fast-route" />
+      <excludeFolder url="file://$MODULE_DIR$/restapi/vendor/nyholm/psr7" />
+      <excludeFolder url="file://$MODULE_DIR$/restapi/vendor/nyholm/psr7-server" />
+      <excludeFolder url="file://$MODULE_DIR$/restapi/vendor/php-http/message-factory" />
+      <excludeFolder url="file://$MODULE_DIR$/restapi/vendor/psr/container" />
+      <excludeFolder url="file://$MODULE_DIR$/restapi/vendor/psr/http-factory" />
+      <excludeFolder url="file://$MODULE_DIR$/restapi/vendor/psr/http-message" />
+      <excludeFolder url="file://$MODULE_DIR$/restapi/vendor/psr/http-server-handler" />
+      <excludeFolder url="file://$MODULE_DIR$/restapi/vendor/psr/http-server-middleware" />
+      <excludeFolder url="file://$MODULE_DIR$/restapi/vendor/ralouphie/getallheaders" />
+      <excludeFolder url="file://$MODULE_DIR$/restapi/vendor/slim/psr7" />
+      <excludeFolder url="file://$MODULE_DIR$/restapi/vendor/slim/slim" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

@@ -1,0 +1,34 @@
+<div class="main-content-wrapper">
+
+    <ng-container *ngIf="!isLoaded">
+        <i class="fas fa-spinner rotate"></i>
+    </ng-container>
+
+    <ng-container *ngIf="isLoaded">
+        <mat-card class="mat-card-container" *ngFor="let row of data" >
+            <h2> {{row.report_date}}</h2>
+            <div style="display: flex; flex-direction: row;">
+                <div style="display: flex; flex-direction: column; flex-grow: 1">
+                    <app-report-type [model]="row.report_type" [disabled]="true"></app-report-type>
+                    <app-report-loc [model]="row.location" [disabled]="true"></app-report-loc>
+                    <app-report-text [model]="row.issue" [disabled]="true"></app-report-text>
+                </div>
+                <div style="flex-grow: 2">
+
+                </div>
+                <div style="display: flex; flex-direction: column; flex-grow: 1">
+                    <app-report-text #translatedText [model]="" [required]="true" [rows]="12"></app-report-text>
+                    <button mat-raised-button [disabled]="!translatedText.ok" color="primary"
+                            (click)="translateText(row.id, translatedText.value)">{{'TRANSLATE.SEND' | translate}}</button>
+                </div>
+            </div>
+        </mat-card>
+        <mat-card *ngIf="data.length === 0">
+            <mat-card-header>
+                {{'TRANSLATE.EMPTY' | translate}}
+            </mat-card-header>
+        </mat-card>
+    </ng-container>
+
+
+</div>

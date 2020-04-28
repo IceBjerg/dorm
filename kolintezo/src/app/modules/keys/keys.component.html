@@ -1,0 +1,20 @@
+<div class="main-content-wrapper">
+    <h2>{{'KEYS.ACTUAL' | translate}}</h2>
+    <app-keys-table #actual *ngIf="isLoaded" [isEditMode]="true" [data]="keyData" (receiveUpdates)="receiveUpdate($event)"
+                    (keyTaking)="takeKey($event)"></app-keys-table>
+
+    <h2 style="margin-top: 30px">{{'KEYS.HISTORY' | translate}}</h2>
+    <app-keys-table #hist *ngIf="isLoaded" [isEditMode]="false" [data]="keyDataHist"></app-keys-table>
+</div>
+
+<ng-template #whoToTake let-data>
+    <h1> {{data.keyName | translate}}</h1>
+    <mat-dialog-content>
+        <app-guest-host-id #neptun [required]="true" [values]="data.neptuns" label="KEYS.BORROWER"></app-guest-host-id>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <button mat-raised-button mat-dialog-close color="accent"> {{'ACTIONS.CANCEL' | translate}}</button>
+        <button mat-raised-button [disabled]="!neptun.ok" mat-dialog-close="{{neptun.value}}" color="primary"> {{'ACTIONS.SAVE' | translate}}</button>
+    </mat-dialog-actions>
+
+</ng-template>

@@ -1,203 +1,248 @@
-// to easily get colors
-@function color($color,$tone) {
-  @if map-has-key($palettes, $color) {
-    $color: map-get($palettes, $color);
-    @if map-has-key($color, $tone) {
-      $tone: map-get($color, $tone);
-      @return $tone;
-    }
-    @return null;
-  }
-  @return null;
+@import "~ng-pick-datetime/assets/style/picker.min.css";
 
-}
-
-$palettes: (
-  dark: (
-    // content colors
-    C000: hsl(200, 0%, 100%),
-    C100: hsl(200, 10%, 90%),
-    C200: hsl(200, 20%, 80%),
-    C300: hsl(200, 30%, 70%),
-    C400: hsl(200, 40%, 60%),
-    C500: hsl(200, 50%, 55%),
-    C600: hsl(200, 60%, 50%),
-    C700: hsla(200, 70%, 45%),
-    C800: hsla(200, 80%, 40%),
-    C900: hsla(200, 90%, 40%),
-    // background colors
-    B000: hsl(200, 0%, 0%),
-    B100: hsl(200, 5%, 0%),
-    B200: hsl(200, 10%, 5%),
-    B300: hsl(200, 15%, 5%),
-    B400: hsl(200, 20%, 10%),
-    B500: hsl(200, 25%, 10%),
-    B600: hsl(200, 30%, 15%),
-    B700: hsla(200, 35%, 15%),
-    B800: hsla(200, 40%, 20%),
-    B900: hsla(200, 45%, 20%),
-  )
-);
 
 body {
   margin: 0;
-  &.dark{
-    background-color: darken(color(dark, B600),3);
+  font-family: "Baloo Thambi 2", monospace;
+}
+
+html, body {
+  height: 100%;
+}
+
+.phoneSizeContainer {
+  height: calc(100vh - 56px);
+}
+
+.notPhoneSizeContainer {
+  height: calc(100vh - 64px);
+}
+
+
+app-kol-header {
+  .mat-icon-button {
+    font-size: x-large;
   }
-}
 
-div {
-  margin: 0;
-  font-family: "Roboto Light", "Times New Roman", Times, serif;
-}
+  .toolbar-spacer {
+    flex: 1 1 auto;
+  }
 
+  .content-container {
+    width: 233px;
+  }
 
-@import '../node_modules/primeng/resources/themes/nova-dark/theme.css';
-.dark {
-  color: color(dark, C200);
+  .login-container {
 
-  app-kol-header {
-    .header {
-      width: 100%;
-      background-color: color(dark, B900);
-      border: 1px solid color(dark, B600);
+    margin-top: 50px;
+    position: absolute;
+    left: calc(50% - 133px);
+  }
+
+  .mat-drawer-content {
+    height: initial;
+  }
+
+  .sidenav-menu-container {
+    padding-top: 20px;
+    padding-right: 10px;
+  }
+
+  .main-content-wrapper {
+    padding: 20px;
+    box-sizing: border-box;
+    height: 100%;
+    overflow: auto;
+  }
+
+  .table-left {
+    text-align: right;
+    padding-right: 10px;
+  }
+
+  app-menu-tree {
+    .menu-item {
+      cursor: pointer;
       box-sizing: border-box;
-      align-items: center;
-
-      .p-grid {
-        margin-right: 0;
-      }
-
-      .show-menu-icon {
-        padding: 4px;
-      }
-
-      .show-menu-icon:hover {
-        cursor: pointer;
-      }
-
-      p {
-        font-size: x-large;
-        margin: 0;
-        padding: 15px;
-      }
-    }
-  }
-
-  app-side-menu {
-    .ui-sidebar {
-
-      overflow: auto;
-      background-color: rgba(color(dark, B600), 0.95);
-      padding: 0 0 0 0;
-      color: rgba(color(dark, C600), 0.95);
-      border: 1px solid color(dark, B600);
-      box-shadow: 0 0 10px color(dark, B000);
-
-      .menu-item {
-        cursor: pointer;
-      }
-
-      .menu-item:hover {
-        background-color: rgba(color(dark, B800), 0.95);
-      }
-
-      .selected-menu-item {
-        background-color: rgba(color(dark, B800), 0.95);
-      }
+      border-radius: 0 4px 4px 0;
     }
 
-    .kol-sidebar {
-      background-color: color(dark, B600);
-      padding: 0 0 0 0;
-      color: rgba(color(dark, C600), 0.95);
-      border: 1px solid color(dark, B600);
-      height: calc(100vh - 75px);
-      width: 220px;
-      overflow: auto;
-
-      .menu-item {
-        cursor: pointer;
-      }
-
-      .menu-item:hover {
-        background-color: rgba(color(dark, B800), 0.95);
-      }
-
-      .selected-menu-item {
-        background-color: rgba(color(dark, B800), 0.95);
-      }
+    .selected-menu-item {
+      border-width: 1px;
+      border-left-width: 0;
+      border-style: solid;
+      -webkit-box-shadow: inset 0px 0px 5px 0px rgba(0, 0, 0, 0.39);
+      -moz-box-shadow: inset 0px 0px 5px 0px rgba(0, 0, 0, 0.39);
+      box-shadow: inset 0px 0px 5px 0px rgba(0, 0, 0, 0.39);
     }
-  }
-
-  app-login {
-    .kol-login-box {
-      background-color: color(dark, B200);
-      width: 100vw;
-      height: calc(100vh - 69px);
-
-      .ui-card {
-        color: color(dark, C100);
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        margin-right: -50%;
-        transform: translate(-50%, -50%);
-        width: auto;
-        background-color: color(dark, B800);
-        border-radius: 5px;
-        box-shadow: 0 0 20px color(dark, B900);
-      }
-
-      .ui-card-header {
-        text-align: center;
-        font-size: larger;
-        padding: 20px;
-      }
-
-      .ui-card-footer {
-        // text-align: center;
-        .ui-progress-spinner {
-          width: 31px;
-          height: 31px;
-          margin-left: 20px;
-        }
-      }
-
-      .ui-card-content {
-
-        .ui-float-label {
-          margin: 30px 0;
-        }
-
-      }
-    }
-  }
-
-  app-content-wrapper {
-    .kol-wrapper {
-      min-height: calc(100vh - 69px);
-      background-color: darken(color(dark, B900), 10);
-    }
-  }
-
-  .ui-menu {
-    background-color: lighten(color(dark, B500), 5);
-
-    .ui-menuitem-link {
-      .ui-menuitem-text, .ui-menuitem-icon {
-        color: color(dark, C300);
-      }
-    }
-
-    .ui-menuitem-link:hover {
-      .ui-menuitem-text, .ui-menuitem-icon{
-        color: darken(color(dark, C300), 10);
-      }
-
-      background-color: lighten(color(dark, B500), 15);
-    }
-
   }
 }
 
+.room-edit-button {
+  cursor: pointer;
+}
+
+.own-list-row {
+  display: flex;
+  padding: 10px 20px 10px 20px;
+  height: 40px;
+  vertical-align: center;
+  .own-list-row-icon {
+    width: 40px;
+    font-size: 24px;
+    margin: auto 0;
+  }
+  .own-list-row-name {
+    font-size: 12px;
+    overflow: hidden;
+  }
+  .own-list-row-neptun {
+    font-size: 16px;
+  }
+}
+
+
+app-users, app-room-assign {
+  .table-container {
+    margin: 20px;
+    overflow: auto;
+    max-height: calc(100% - 40px);
+  }
+  table {
+    width: 100%;
+  }
+
+  tr.example-detail-row {
+     height: 0;
+  }
+
+  .table-row td {
+    border-bottom-width: 0;
+  }
+
+  .table-details {
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    margin-left: 39px;
+    .user-action-button-wrapper {
+      margin: 10px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      .user-action-button {
+        margin-bottom: 10px;
+        margin-left: 20px;
+      }
+    }
+  }
+  .mat-paginator-sticky {
+    bottom: 0;
+    position: sticky;
+    z-index: 10;
+  }
+}
+
+app-translate {
+  .example-full-width {
+    width: 100%;
+  }
+  .mat-card-container {
+    margin-bottom: 20px;
+  }
+}
+
+app-maintenance, app-error-report {
+  .mat-card-container {
+    margin-bottom: 20px;
+  }
+}
+
+app-rooms, app-permissions {
+  .table-container {
+    margin: 20px;
+    overflow: auto;
+    max-height: calc(100% - 40px);
+  }
+  table {
+    width: 100%;
+  }
+  .mat-paginator-sticky {
+    bottom: 0;
+    position: sticky;
+    z-index: 10;
+  }
+}
+
+app-guests {
+  .table-container {
+    margin: 20px;
+    overflow: auto;
+    max-height: calc(100% - 40px);
+  }
+  tr.example-detail-row {
+    height: 0;
+  }
+  .table-details {
+    overflow: hidden;
+  }
+  table {
+    width: 100%;
+  }
+  .mat-paginator-sticky {
+    bottom: 0;
+    position: sticky;
+    z-index: 10;
+  }
+  .table-mytable {
+    min-width: fit-content;
+  }
+}
+
+app-events-add {
+  .mat-card-container {
+    width: 50%;
+    min-width: 300px;
+    max-width: 500px;
+  }
+  .example-full-width {
+    width: 100%;
+  }
+}
+
+app-event-history, app-keys-table {
+  table {
+    width: 100%;
+  }
+  tr.example-detail-row {
+    height: 0;
+  }
+  .table-details {
+    overflow: hidden;
+  }
+}
+
+.own-hover-bg:hover {
+  background-color: rgba(175, 175, 179, 0.09);
+}
+
+
+app-register-page {
+  .register-card {
+    margin: 5px 0;
+  }
+}
+
+.rotate {
+  animation: rotation 1s infinite linear;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}

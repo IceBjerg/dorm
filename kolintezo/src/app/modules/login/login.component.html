@@ -1,0 +1,26 @@
+<div class="content-container login-container">
+  <form autocomplete="off">
+    <mat-card class="example-card">
+      <mat-card-header>
+        <mat-card-title>{{'LOGIN.MOTIVATE' | translate }}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label> {{'LOGIN.USERNAME' | translate}}</mat-label>
+          <input matInput placeholder="{{'LOGIN.USERNAME' | translate}}" [(ngModel)]="username" id="username" name="username">
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>{{'LOGIN.PASSWORD' | translate}}</mat-label>
+          <input matInput placeholder="{{'LOGIN.PASSWORD' | translate}}" [(ngModel)]="password" (keyup.enter)="login()" type="password"
+                 id="password" name="password">
+        </mat-form-field>
+      </mat-card-content>
+
+      <mat-card-actions>
+        <button mat-raised-button color="primary" type="submit" (click)="login()">{{'LOGIN.LOGIN' | translate}}</button>
+      </mat-card-actions>
+
+    </mat-card>
+
+  </form>
+</div>

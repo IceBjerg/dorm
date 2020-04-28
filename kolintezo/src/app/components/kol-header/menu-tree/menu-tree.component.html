@@ -1,0 +1,38 @@
+<ng-container *ngIf="model?.innerItems.length === 0">
+    <div *ngIf="model.translateId" class="menu-item" style="padding-top: 5px; padding-bottom: 5px; font-size: large"
+         [ngClass]="isSelected() ? 'selected-menu-item' : ''"
+         [ngStyle]="{ 'padding-left.px': leftPadding, 'width.percent': 100, 'padding-right.px': rightPadding}"
+         [routerLink]="model.path">
+        <ng-container *ngIf="model.icon !== null && model.icon !== undefined">
+            <i style="width: 25px" [className]="model.icon"></i>
+        </ng-container>
+        {{model.translateId | translate}}
+    </div>
+</ng-container>
+<ng-container *ngIf="model?.innerItems.length > 0">
+    <div *ngIf="model.translateId" class="menu-item" style="padding-top: 5px; padding-bottom: 5px; font-size: large"
+         [ngStyle]="{ 'padding-left.px': leftPadding, 'width.percent': 100, 'padding-right.px': rightPadding}"
+         (click)="expandChange()">
+        <ng-container *ngIf="model.icon">
+            <i style="width: 25px" [className]="model.icon"></i>
+        </ng-container>
+
+        <ng-container *ngIf="!model.icon && model.isExpanded">
+            <i style="width: 25px" [className]="'fas fa-angle-down'"></i>
+        </ng-container>
+        <ng-container *ngIf="!model.icon && !model.isExpanded">
+            <i style="width: 25px" [className]="'fas fa-angle-right'"></i>
+        </ng-container>
+        {{model.translateId | translate}}
+    </div>
+
+    <!--  childs-->
+    <div [@childrenExpanded]="model.isExpanded ? 'expanded' : 'collapsed'" *ngIf="model.isExpanded" >
+        <app-menu-tree *ngFor="let childModel of model.innerItems" [model]="childModel"
+                       [leftPadding]="getPadding()" [rightPadding]="rightPadding" [sidenav]="sidenav"
+                       [isPhone]="isPhone"
+                       [sidenavcontainer]="sidenavcontainer"></app-menu-tree>
+    </div>
+
+
+</ng-container>

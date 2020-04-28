@@ -1,0 +1,10 @@
+<mat-form-field class="example-full-width" [appearance]="configService.getData('formFieldAppearance')">
+    <mat-label>{{'USER.NAME' | translate}}</mat-label>
+    <input matInput [placeholder]="'USER.NAME' | translate" [formControl]="formControl" type="text"
+           [required]="required" [matAutocomplete]="auto">
+    <mat-error *ngIf="formControl.invalid">
+        {{responseHandler.getErrorMsg(formControl) | translate}}
+    </mat-error>
+    <mat-autocomplete #auto="matAutocomplete">
+    </mat-autocomplete>
+</mat-form-field>

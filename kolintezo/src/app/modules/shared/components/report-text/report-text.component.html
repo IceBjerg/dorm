@@ -1,0 +1,11 @@
+<mat-form-field class="example-full-width" [appearance]="configService.getData('formFieldAppearance')">
+    <mat-label>{{'ERROR-REPORT.TEXT' | translate}}</mat-label>
+    <textarea matInput  [rows]="rows" [placeholder]="'ERROR-REPORT.TEXT' | translate" [formControl]="formControl" [required]="required" value="{{model}}" >
+
+    </textarea>
+    <mat-error *ngIf="formControl.invalid">
+        {{responseHandler.getErrorMsg(formControl) | translate}}
+    </mat-error>
+    <mat-autocomplete #auto="matAutocomplete">
+    </mat-autocomplete>
+</mat-form-field>

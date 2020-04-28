@@ -1,0 +1,24 @@
+<div class="main-content-wrapper">
+    <mat-card class="example-card">
+        <mat-card-header>
+            <div mat-card-avatar><button mat-icon-button routerLink=".."><i class="fas fa-arrow-left"></i></button></div>
+            <mat-card-title>{{'ROOM.NEW' | translate}}</mat-card-title>
+            <mat-card-subtitle>{{'ROOM.NEW-DESC' | translate}}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <app-room-id #id model="" [required]="true"></app-room-id> <br>
+            <app-room-name #name [model]="''" [required]="true"></app-room-name> <br>
+            <app-room-building #building [model]="''" [required]="true"></app-room-building><br>
+            <app-room-floor #floor [model]="0" [required]="true"></app-room-floor><br>
+            <app-room-capacity #capacity [model]="0" [required]="true"> </app-room-capacity><br>
+
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-raised-button color="accent" routerLink="..">{{'ACTIONS.CANCEL' | translate}}</button>
+            <button mat-raised-button color="primary" (click)="add(id, name, building, floor, capacity)"
+                    [disabled]="!(id.ok && name.ok && building.ok && floor.ok && capacity.ok)">{{'ACTIONS.SAVE' | translate}}</button>
+        </mat-card-actions>
+    </mat-card>
+</div>
+
+

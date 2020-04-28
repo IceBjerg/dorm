@@ -1,0 +1,16 @@
+<div style="display: flex; flex-direction: row; align-items: center">
+    <div *ngIf="data.title && data.title.toLowerCase() === 'success'" class="my-success-notice-icon">
+        <i class="fas fa-check-circle"></i>
+    </div>
+    <div *ngIf="data.title && data.title.toLowerCase() === 'error'" class="my-error-notice-icon">
+        <i class="fas fa-exclamation-circle"></i>
+    </div>
+    <div style="margin: auto; word-break: break-word">
+        {{data.content | translate}}
+    </div>
+    <div style="flex-grow: 1">
+    </div>
+    <div style="margin-left: 20px;">
+        <button mat-flat-button (click)="dismiss()"> {{data.yesText | translate}}</button>
+    </div>
+</div>

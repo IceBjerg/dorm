@@ -1,0 +1,93 @@
+@import '~@angular/material/theming';
+
+$custom-typography: mat-typography-config(
+        $font-family: '"Baloo Thambi 2", monospace'
+);
+
+@include mat-base-typography($custom-typography);
+
+// Override typography for a specific Angular Material components.
+@include mat-checkbox-typography($custom-typography);
+
+// Override typography for all Angular Material, including mat-base-typography and all components.
+@include angular-material-typography($custom-typography);
+
+@include mat-core($custom-typography);
+
+$my-theme-primary: mat-palette($mat-green);
+$my-theme-accent: mat-palette($mat-yellow);
+$my-theme-warn: mat-palette($mat-red);
+
+$my-theme-light: mat-light-theme($my-theme-primary, $my-theme-accent, $my-theme-warn);
+$my-theme-dark: mat-dark-theme($my-theme-primary, $my-theme-accent, $my-theme-warn);
+
+.my-success-notice-icon {
+  color: green;
+  margin-right: 20px;
+  font-size: 30px;
+}
+
+.my-error-notice-icon {
+  color: darkred;
+  margin-right: 20px;
+  font-size: 30px;
+}
+
+body.dark {
+  @include angular-material-theme($my-theme-dark);
+
+  .menu-item:hover {
+    background-color: mat-color($my-theme-primary, 800);
+  }
+
+  .selected-menu-item {
+    background-color: mat-color($my-theme-primary, 800);
+    border-color: opacify(mat-color($my-theme-primary, 800), 0.5);
+  }
+
+  .own-list-row:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  app-users, app-rooms {
+    tr.table-row:not(.example-expanded-row):hover {
+      background: darken(mat-color($my-theme-primary, 500), 10);
+    }
+
+    tr.table-row:not(.example-expanded-row):active {
+      background: darken(mat-color($my-theme-primary, 500), 10);
+    }
+  }
+
+  .mat-text-own {
+    color: white;
+  }
+}
+
+body.light {
+  @include angular-material-theme($my-theme-light);
+
+  .menu-item:hover {
+    background-color: mat-color($my-theme-primary, 200);
+  }
+
+  .selected-menu-item {
+    background-color: mat-color($my-theme-primary, 200);
+
+    border-color: opacify(mat-color($my-theme-primary, 200), 0.5);
+  }
+
+  .own-list-row:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+
+  app-users, app-rooms {
+    tr.table-row:not(.example-expanded-row):hover {
+      background: mat-color($my-theme-primary, 300);
+    }
+
+    tr.table-row:not(.example-expanded-row):active {
+      background: mat-color($my-theme-primary, 300);
+    }
+  }
+}

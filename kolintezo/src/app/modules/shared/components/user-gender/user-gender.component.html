@@ -1,0 +1,8 @@
+<mat-form-field [appearance]="configService.getData('formFieldAppearance')">
+    <mat-label>{{'USER.GENDER.GENDER' | translate}}</mat-label>
+    <mat-select #select (selectionChange)="res = select.value" [value]="value" [required]="required">
+        <mat-option *ngFor="let row of values" [value]="row.key">
+            {{row.value | translate}}
+        </mat-option>
+    </mat-select>
+</mat-form-field>

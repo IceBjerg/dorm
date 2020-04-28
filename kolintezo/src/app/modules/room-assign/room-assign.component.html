@@ -1,0 +1,135 @@
+<div class="table-container mat-elevation-z8">
+
+
+    <table mat-table [dataSource]="dataSource" matSort multiTemplateDataRows class="mat-elevation-z8">
+
+        <ng-container matColumnDef="{{column}}" *ngFor="let column of displayedColumns">
+            <ng-container *ngIf="column !== 'check-box' && column !== 'edit-user'">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header
+                    id="{{column}}"> {{getTranslateId(column) | translate}} </th>
+                <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
+            </ng-container>
+            <ng-container *ngIf="column === 'check-box'">
+                <th mat-header-cell *matHeaderCellDef style="width: 50px;">
+                    <mat-checkbox (change)="$event ? masterToggle() : null" color="primary"
+                                  [checked]="selection.hasValue() && isAllSelected()"
+                                  [indeterminate]="selection.hasValue() && !isAllSelected()">
+                    </mat-checkbox>
+                </th>
+                <td mat-cell *matCellDef="let row">
+                    <mat-checkbox (click)="$event.stopPropagation()" color="primary"
+                                  (change)="$event ? selection.toggle(row) : null"
+                                  [checked]="selection.isSelected(row)">
+                    </mat-checkbox>
+                </td>
+            </ng-container>
+            <ng-container *ngIf="column === 'edit-user'">
+                <th mat-header-cell *matHeaderCellDef>{{getTranslateId('edit-user') | translate}}</th>
+                <td mat-cell *matCellDef="let row">
+                    <button mat-icon-button color="primary" (click)="$event.stopPropagation(); test(row)"><i
+                            class="fas fa-edit"></i></button>
+                </td>
+            </ng-container>
+        </ng-container>
+
+
+        <ng-container matColumnDef="expandedDetail">
+            <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
+                <div class="table-details"
+                     [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+                    <mat-divider></mat-divider>
+                    <div style="width: 100%; display: flex; flex-direction: column">
+                        <div>
+                            <h3 *ngIf="getNumberOfResidents(element.id) > 0"> {{'ROOM.RESIDENTS' | translate}}</h3>
+                            <h3 *ngIf="getNumberOfResidents(element.id) === 0"> {{'ROOM.EMPTY' | translate}}</h3>
+                        </div>
+                        <div *ngFor="let user of getResidentsOfRoom(element.id)"
+                             class="own-list-row">
+
+                            <i *ngIf="user.gender === 'male'" class="fas fa-mars own-list-row-icon"></i>
+                            <i *ngIf="user.gender === 'female'" class="fas fa-venus own-list-row-icon"></i>
+                            <div style="display: flex; flex-direction: column">
+                                <div class="own-list-row-name">{{user.name}}</div>
+                                <div class="own-list-row-neptun">{{user.id}}</div>
+                            </div>
+                            <div style="flex-grow: 1"></div>
+                            <button style="font-size: 24px" mat-icon-button color="warn"
+                                    (click)="removeFromRoom(user.id, element.id)"><i
+                                    class="fas fa-times"></i></button>
+
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </ng-container>
+
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="table-row"
+            [class.example-expanded-row]="expandedElement === row"
+            (click)="expandedElement = expandedElement === row ? null : row"></tr>
+        <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+    </table>
+
+    <div class="mat-paginator-sticky mat-paginator">
+        <mat-divider></mat-divider>
+        <div style="display: flex; flex-direction: row; height: 58px;">
+            <button style="margin: auto 10px;" mat-raised-button color="warn"
+                    [disabled]="!selection.hasValue()"
+                    (click)="kickoutFromSelected()"> {{'ACTIONS.KICK-OUT' | translate}}</button>
+            <div style="flex-grow: 1"></div>
+            <button style="margin: auto 10px;" mat-raised-button color="accent"
+                    [disabled]="arrayEquals(initialUserRooms, userRooms)"
+                    (click)="cancel()"> {{'ACTIONS.CANCEL' | translate}}</button>
+            <button style="margin: auto 10px;" mat-raised-button color="primary"
+                    [disabled]="arrayEquals(initialUserRooms, userRooms)"
+                    (click)="save()"> {{'ACTIONS.SAVE' | translate}}</button>
+
+        </div>
+    </div>
+
+
+</div>
+
+
+<ng-template #popup>
+    <h1>
+        {{popupRoom.name}}
+    </h1>
+    <div style="width: 60vw; height: calc(60vh - 48px); overflow: auto">
+        <h2>{{ 'ROOM.RESIDENTS' | translate}}</h2>
+        <div *ngFor="let user of getResidentsOfRoom(popupRoom.id)"
+             class="own-list-row">
+
+            <i *ngIf="user.gender === 'male'" class="fas fa-mars own-list-row-icon"></i>
+            <i *ngIf="user.gender === 'female'" class="fas fa-venus own-list-row-icon"></i>
+            <div style="display: flex; flex-direction: column">
+                <div class="own-list-row-name">{{user.name}}</div>
+                <div class="own-list-row-neptun">{{user.id}}</div>
+            </div>
+            <div style="flex-grow: 1"></div>
+            <button style="font-size: 24px" mat-icon-button color="warn"
+                    (click)="removeFromRoom(user.id, popupRoom.id)"><i
+                    class="fas fa-times"></i></button>
+        </div>
+
+        <mat-divider></mat-divider>
+
+        <h2>{{ 'ROOM.FREE-USERS' | translate}}</h2>
+        <div *ngFor="let user of getFreeUsers()"
+             class="own-list-row">
+
+            <i *ngIf="user.gender === 'male'" class="fas fa-mars own-list-row-icon"></i>
+            <i *ngIf="user.gender === 'female'" class="fas fa-venus own-list-row-icon"></i>
+            <div style="display: flex; flex-direction: column">
+                <div class="own-list-row-name">{{user.name}}</div>
+                <div class="own-list-row-neptun">{{user.id}}</div>
+            </div>
+            <div style="flex-grow: 1"></div>
+            <button style="font-size: 24px" mat-icon-button color="primary" (click)="addToRoom(user.id, popupRoom.id)"
+                    [disabled]="isFullRoom(popupRoom)"><i
+                    class="fas fa-plus"></i></button>
+        </div>
+
+    </div>
+</ng-template>

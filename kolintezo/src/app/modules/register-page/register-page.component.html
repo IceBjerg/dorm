@@ -1,0 +1,33 @@
+<div class="main-content-wrapper">
+    <mat-card class="register-card">
+        <mat-card-title>{{'REGISTER.SINGLE' | translate}}</mat-card-title>
+        <mat-card-subtitle>{{'REGISTER.SINGLE-DETAIL' | translate}}</mat-card-subtitle>
+        <mat-card-content>
+            <form #myForm="ngForm" (ngSubmit)="myForm.resetForm()">
+                <app-user-full-name #name required="true" model=""></app-user-full-name><br>
+                <app-user-neptun #neptun required="true" model=""></app-user-neptun> <br>
+                <app-user-email #email required="true" model=""></app-user-email><br>
+                <app-user-gender #gender required="true"></app-user-gender> <br>
+                <app-user-nationality #nationality model=""></app-user-nationality><br>
+                <button mat-raised-button type="submit" color="primary" [disabled]="!(name.ok && neptun.ok && email.ok && gender.ok && nationality.ok)"
+                        (click)="registerSingle(name, neptun, email, gender, nationality)">
+                    {{'REGISTER.SINGLE-REG' | translate}}
+                </button>
+            </form>
+        </mat-card-content>
+    </mat-card>
+    <mat-divider></mat-divider>
+    <mat-card class="register-card">
+        <mat-card-title>{{'REGISTER.MULTI' | translate}}</mat-card-title>
+        <mat-card-subtitle>{{'REGISTER.MULTI-DETAIL' | translate}}</mat-card-subtitle>
+        <mat-card-content>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-raised-button color="primary" (click)="onClick()">
+                {{'REGISTER.MULTI-REG' | translate}}
+            </button>
+        </mat-card-actions>
+
+    </mat-card>
+    <input type="file" #fileUpload id="fileUpload" name="fileUpload" accept=".xlsx" hidden/>
+</div>

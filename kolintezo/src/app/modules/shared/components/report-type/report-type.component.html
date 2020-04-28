@@ -1,0 +1,8 @@
+<mat-form-field class="example-full-width" [appearance]="configService.getData('formFieldAppearance')">
+    <mat-label>{{'ERROR-REPORT.REPORT-TYPE' | translate}}</mat-label>
+    <mat-select #select (selectionChange)="res = select.value" [value]="value" [required]="required" [disabled]="disabled">
+        <mat-option *ngFor="let row of getKeys(values)" [value]="row">
+            {{values[row] | translate}}
+        </mat-option>
+    </mat-select>
+</mat-form-field>
