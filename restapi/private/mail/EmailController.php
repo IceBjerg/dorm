@@ -5,11 +5,11 @@ use Mailjet\Resources;
 
 class EmailController {
     private $client = null;
+    private $from = '';
     public function __construct() {
         $config = require_once __DIR__ . '/../config/EmailConfig.php';
-        $this->client = new \Mailjet\Client('80e70476d84c90ff733496e7b3492b59',
-            'dec0379b3edb4128657f6d00d4daf5ad',
-            true, ['version' => 'v3.1']);
+        $this->client = new \Mailjet\Client($config['key'], $config['secret'], true, ['version' => 'v3.1']);
+        $this->from = $config['from'];
         $this->client->setTimeout(20);
         $this->client->setConnectionTimeout(20);
     }
@@ -24,7 +24,7 @@ class EmailController {
         ];
         foreach ($emails as $mail) {
             if (Parameters::hasAllRequired(['email', 'token'], $mail)) {
-                $bdy['Messages'][] = ['From' => ['Email' => "noreply@kolintezo.hu", 'Name' => "Kolintéző"], 'To' => [['Email' => $mail['email'],]], 'Subject' => "Regisztráció / registration", 'HTMLPart' => "
+                $bdy['Messages'][] = ['From' => ['Email' => $this->from, 'Name' => "Kolintéző"], 'To' => [['Email' => $mail['email'],]], 'Subject' => "Regisztráció / registration", 'HTMLPart' => "
                         <h1>Kolintéző regisztráció</h1> <br>
                         <h2>
                             A regisztráció befejezéséhez nyissa meg az alábbi linket, s adjon meg egy jelszót: 

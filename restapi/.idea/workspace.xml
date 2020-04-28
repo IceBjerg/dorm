@@ -19,16 +19,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e62e4c4c-964c-4eb3-8513-9ea306799253" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/private/config/EmailConfig.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kolintezo/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../kolintezo/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kolintezo/src/assets/config/config.dev.json" beforeDir="false" afterPath="$PROJECT_DIR$/../kolintezo/src/assets/config/config.dev.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kolintezo/src/styles.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../kolintezo/src/styles.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/restapi.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/restapi.iml" afterDir="false" />
+    <list default="true" id="e62e4c4c-964c-4eb3-8513-9ea306799253" name="Default Changelist" comment="test">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/private/config/SlimConfig.php" beforeDir="false" afterPath="$PROJECT_DIR$/private/config/SlimConfig.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/private/config/EmailConfig.php" beforeDir="false" afterPath="$PROJECT_DIR$/private/config/EmailConfig.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/private/mail/EmailController.php" beforeDir="false" afterPath="$PROJECT_DIR$/private/mail/EmailController.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -147,8 +140,16 @@
       <workItem from="1587977030203" duration="6958000" />
       <workItem from="1588060507023" duration="854000" />
       <workItem from="1588074193867" duration="86000" />
-      <workItem from="1588074283330" duration="2256000" />
+      <workItem from="1588074283330" duration="2720000" />
     </task>
+    <task id="LOCAL-00001" summary="test">
+      <created>1588084469855</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1588084469855</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -165,6 +166,10 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="test" />
+    <option name="LAST_COMMIT_MESSAGE" value="test" />
   </component>
   <component name="WindowStateProjectService">
     <state x="552" y="179" key="#SQL_Dialects" timestamp="1587202381540">
@@ -236,6 +241,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="200" height="441" key="SqlResolveConfigurable/-1920.335.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1587203542837" />
+    <state x="-1559" y="480" key="Vcs.Push.Dialog.v2" timestamp="1588084471511">
+      <screen x="-1920" y="335" width="1536" height="832" />
+    </state>
+    <state x="-1559" y="480" key="Vcs.Push.Dialog.v2/-1920.335.1536.832/0.0.1920.1040@-1920.335.1536.832" timestamp="1588084471511" />
     <state x="859" y="450" key="com.intellij.database.run.ParametersPanel.Standalone" timestamp="1587203593233">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
