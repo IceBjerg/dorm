@@ -1,5 +1,5 @@
 <?php
 return [
-    'basePath' => '/szakdoga/restapi/public',
+    'basePath' => '/dorm/restapi/public',
     'tmpdir' => 'C:/xampp/tmp'
 ];

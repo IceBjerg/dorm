@@ -6,6 +6,7 @@ use Mailjet\Resources;
 class EmailController {
     private $client = null;
     public function __construct() {
+        $config = require_once __DIR__ . '/../config/EmailConfig.php';
         $this->client = new \Mailjet\Client('80e70476d84c90ff733496e7b3492b59',
             'dec0379b3edb4128657f6d00d4daf5ad',
             true, ['version' => 'v3.1']);
