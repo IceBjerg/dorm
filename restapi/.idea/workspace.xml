@@ -19,10 +19,11 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e62e4c4c-964c-4eb3-8513-9ea306799253" name="Default Changelist" comment="test">
+    <list default="true" id="e62e4c4c-964c-4eb3-8513-9ea306799253" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../kolintezo/src/app/app.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../kolintezo/src/app/app.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kolintezo/src/app/services/permission.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../kolintezo/src/app/services/permission.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/private/config/EmailConfig.php" beforeDir="false" afterPath="$PROJECT_DIR$/private/config/EmailConfig.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/private/mail/EmailController.php" beforeDir="false" afterPath="$PROJECT_DIR$/private/mail/EmailController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/private/config/DbConfig.php" beforeDir="false" afterPath="$PROJECT_DIR$/private/config/DbConfigTemplate.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,6 +36,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
@@ -76,16 +78,16 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/private/config" />
     <property name="settings.editor.selected.configurable" value="SQL Dialects" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Tonkatsu\PhpstormProjects\szakdoga\restapi\private\config" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Tonkatsu\PhpstormProjects\szakdoga\restapi\private" />
       <recent name="C:\Users\Tonkatsu\PhpstormProjects\szakdoga\restapi" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Tonkatsu\PhpstormProjects\szakdoga\restapi\private\config" />
     </key>
   </component>
   <component name="SvnConfiguration">

@@ -20,7 +20,7 @@ export class AppComponent implements OnInit {
 
     public inited = false;
     innerWidth: number;
-    title = 'kolintezo';
+    title = 'kolintezo'; // not in use
     menu: MenuItemModel = {
         translateId: '',
         isExpanded: true,

@@ -3,7 +3,7 @@ import {ConfigService} from './config.service';
 import {AuthService} from './auth.service';
 import {RotateService} from './rotate.service';
 
-
+// don't use both or + and on the same object!
 export interface Logical {
     or?: Logical[] | number[];
     and?: Logical[] | number[];
