@@ -251,7 +251,7 @@ class DatabaseController {
         $stm = $this->conn->prepare('
                 select id, building, floor, name, capacity from rooms where id = ?');
         $stm->execute([$room]);
-        return $stm->fetchAll(PDO::FETCH_ASSOC)[0];
+        return $stm->fetch(PDO::FETCH_ASSOC);
     }
 
     public function updateRooms($rooms) {
