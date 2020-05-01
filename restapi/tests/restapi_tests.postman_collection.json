@@ -1,0 +1,3109 @@
+{
+	"info": {
+		"_postman_id": "361cacdd-4648-4fdf-90fc-f71aa1a6a074",
+		"name": "Restapi",
+		"description": "Restapi testing for dorm api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "no_token",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d0275f7e-d14a-45bb-99a6-a0abb1c0c13b",
+								"exec": [
+									"pm.test(\"login response must be valid and have a body\", function () {\r",
+									"     // assert that the status code is 200\r",
+									"     pm.response.to.be.ok; // info, success, redirection, clientError,  serverError, are other variants\r",
+									"     // assert that the response has a valid JSON body\r",
+									"     pm.response.to.be.withBody;\r",
+									"     pm.response.to.be.json; // this assertion also checks if a body  exists, so the above check is not needed\r",
+									"});\r",
+									"\r",
+									"pm.test(\"response has msg field\", function(){\r",
+									"    const res = pm.response.json();\r",
+									"    pm.expect(res).to.have.property('msg');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"msg has accessToken field\", function(){\r",
+									"    pm.expect(pm.response.json().msg).to.have.property('accessToken');\r",
+									"    pm.environment.set('token', pm.response.json().msg.accessToken);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"accessToken field is at least 10 char long\", function(){\r",
+									"    pm.expect(pm.environment.get('token').length).to.be.above(10);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "280013f5-0910-48da-8ede-9ce018299882",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"user\": \"{{username}}\",\n\t\"pw\": \"{{pw}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/dorm/restapi/public/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"dorm",
+								"restapi",
+								"public",
+								"login"
+							]
+						},
+						"description": "Bejelentkezés tesztelése a default \"admin\", \"admin\" felhasználó/jelszó párosítással"
+					},
+					"response": []
+				},
+				{
+					"name": "RefreshToken",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"id": "c7802c44-2727-43ff-9057-b60a33a7566a",
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"response must be valid and have a body\", function () {\r",
+									"     // assert that the status code is 200\r",
+									"     pm.response.to.be.ok; // info, success, redirection, clientError,  serverError, are other variants\r",
+									"     // assert that the response has a valid JSON body\r",
+									"     pm.response.to.be.withBody;\r",
+									"     pm.response.to.be.json; // this assertion also checks if a body  exists, so the above check is not needed\r",
+									"});\r",
+									"\r",
+									"pm.test(\"login msg has accessToken field\", function(){\r",
+									"    pm.expect(pm.response.json().msg).to.have.property('accessToken');\r",
+									"});"
+								],
+								"id": "798318bd-a86e-4bb2-b231-a48d93dc7df7",
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"token\": \"{{token}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/dorm/restapi/public/refreshToken",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"dorm",
+								"restapi",
+								"public",
+								"refreshToken"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "new password with invalid token",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "08f78f83-bda1-46a7-834a-77bed6ccbbc0",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "ac0f3c97-c662-4cba-9207-4086a6714469",
+								"exec": [
+									"pm.test(\"addPw error response, because invalid token\", function () {\r",
+									"     pm.response.to.be.badRequest;\r",
+									"     // assert that the response has a valid JSON body\r",
+									"     pm.response.to.be.withBody;\r",
+									"     pm.response.to.be.json; // this assertion also checks if a body  exists, so the above check is not needed\r",
+									"});\r",
+									"\r",
+									"pm.test(\"addPw error message\", function () {\r",
+									"     const jsonRes = pm.response.json();\r",
+									"     pm.expect(jsonRes).to.have.property('err');\r",
+									"     pm.expect(jsonRes.err).to.be.equal('user_not_exists');\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"token\": \"invalid\",\n\t\"pw\": \"ReallySecurePw123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{restapiURL}}/public/addPw",
+							"host": [
+								"{{restapiURL}}"
+							],
+							"path": [
+								"public",
+								"addPw"
+							]
+						},
+						"description": "Good updateuser in the restapi"
+					},
+					"response": []
+				}
+			],
+			"description": "Test request that's route does not require authentication",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "b39f5ca2-d30e-4431-ae1b-47f42b3684d8",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "b2075b65-6766-4656-af5e-8fff72bcc9dc",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "user_testing",
+			"item": [
+				{
+					"name": "UserData",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ae695f76-afff-403b-b608-d08544fdcac4",
+								"exec": [
+									"pm.test(\"userdata returns json and status code is ok\", function () {\r",
+									"     // assert that the status code is 200\r",
+									"     pm.response.to.be.ok; // info, success, redirection, clientError,  serverError, are other variants\r",
+									"     // assert that the response has a valid JSON body\r",
+									"     pm.response.to.be.withBody;\r",
+									"     pm.response.to.be.json; // this assertion also checks if a body  exists, so the above check is not needed\r",
+									"});\r",
+									"\r",
+									"pm.test(\"userdata response has msg property\", function () {\r",
+									"    const jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.has.property('msg');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"userdata responses msg prop has id property\", function () {\r",
+									"    const jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.msg).to.has.property('id');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"userdata is the same as given\", function () {\r",
+									"    const jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.msg.id).to.eql(pm.environment.get('username'));\r",
+									"});\r",
+									"\r",
+									"pm.test(\"user is admin\", function () {\r",
+									"    const jsonData = pm.response.json().msg;\r",
+									"    pm.expect(jsonData).to.has.property('permissions');\r",
+									"    const permissions = jsonData.permissions;\r",
+									"    pm.expect(permissions).to.be.an('array');\r",
+									"    \r",
+									"    for (let i = 0; i <= 10; i++) {\r",
+									"        pm.expect(permissions).to.include(i);\r",
+									"    }\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{restapiURL}}/public/userData",
+							"host": [
+								"{{restapiURL}}"
+							],
+							"path": [
+								"public",
+								"userData"
+							]
+						},
+						"description": "Get user data from restapi"
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllUsers",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "34a450fe-0817-4272-a67f-e61c61c5baac",
+								"exec": [
+									"pm.test(\"getAllUsers returns json and status code is ok\", function () {\r",
+									"     // assert that the status code is 200\r",
+									"     pm.response.to.be.ok; // info, success, redirection, clientError,  serverError, are other variants\r",
+									"     // assert that the response has a valid JSON body\r",
+									"     pm.response.to.be.withBody;\r",
+									"     pm.response.to.be.json; // this assertion also checks if a body  exists, so the above check is not needed\r",
+									"});\r",
+									"\r",
+									"pm.test(\"getAllUsers response has msg property\", function () {\r",
+									"    const jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.has.property('msg');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"getAllUsers response msg property is array\", function () {\r",
+									"    const datas = pm.response.json().msg;\r",
+									"    pm.expect(datas).to.be.an('array');\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"getAllUsers response msg property has at least 1 element\", function () {\r",
+									"    const datas = pm.response.json().msg;\r",
+									"    pm.expect(datas).to.have.lengthOf.above(0);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"getAllUsers returned users have good propetry signature\", function () {\r",
+									"    const datas = pm.response.json().msg;\r",
+									"    for (let data of datas) {\r",
+									"        pm.expect(data).to.have.property('id');\r",
+									"        pm.expect(data).to.have.property('name');\r",
+									"        pm.expect(data).to.have.property('email');\r",
+									"        pm.expect(data).to.have.property('gender');\r",
+									"        pm.expect(data).to.have.property('nationality');\r",
+									"    }\r",
+									"});\r",
+									"\r",
+									"pm.test(\"getAllUsers returned users contain the given user\", function () {\r",
+									"    const datas = pm.response.json().msg;\r",
+									"    myuser = datas.filter( (data) => data.id === pm.environment.get('username'));\r",
+									"    pm.expect(myuser).to.have.lengthOf(1);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{restapiURL}}/public/getAllUsers",
+							"host": [
+								"{{restapiURL}}"
+							],
+							"path": [
+								"public",
+								"getAllUsers"
+							]
+						},
+						"description": "Get all users from the users table"
+					},
+					"response": []
+				},
+				{
+					"name": "register new user",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "23a0229c-a8fe-4663-a2dd-73fb5c78bc73",
+								"exec": [
+									"const register = JSON.parse(pm.environment.get('register'));",
+									"",
+									"pm.variables.set('register.id', register.id);",
+									"pm.variables.set('register.name', register.name);",
+									"pm.variables.set('register.email', register.email);",
+									"pm.variables.set('register.gender', register.gender);",
+									"pm.variables.set('register.nationality', register.nationality);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "b5171b5e-048f-43fa-86e0-1d99a0fbb8e2",
+								"exec": [
+									"pm.test(\"updateUsers successfully register student\", function () {\r",
+									"     pm.response.to.be.ok;\r",
+									"     // assert that the response has a valid JSON body\r",
+									"     pm.response.to.be.withBody;\r",
+									"     pm.response.to.be.json; // this assertion also checks if a body  exists, so the above check is not needed\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"url\": \"{{respatiURL}}\",\n\t\"id\": \"{{register.id}}\",\n\t\"name\": \"{{register.name}}\",\n\t\"email\": \"{{register.email}}\",\n\t\"gender\": \"{{register.gender}}\",\n\t\"nationality\": \"{{register.nationality}}\"\n}\t\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{restapiURL}}/public/registerStudent",
+							"host": [
+								"{{restapiURL}}"
+							],
+							"path": [
+								"public",
+								"registerStudent"
+							]
+						},
+						"description": "Create new user "
+					},
+					"response": []
+				},
+				{
+					"name": "update user -- wrong",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "b4ee7dcb-e7cf-4bc0-885f-525f16ad97d5",
+								"exec": [
+									"const register = JSON.parse(pm.environment.get('register'));",
+									"",
+									"pm.variables.set('register.id', register.id);",
+									"pm.variables.set('register.name', register.name);",
+									"pm.variables.set('register.email', register.email);",
+									"pm.variables.set('register.gender', register.gender);",
+									"pm.variables.set('register.nationality', register.nationality);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "c48372fa-ed64-48ce-9a75-95f4a10acfc8",
+								"exec": [
+									"pm.test(\"updateUsers returns error, because the same data was given\", function () {\r",
+									"     pm.response.to.be.badRequest\r",
+									"     // assert that the response has a valid JSON body\r",
+									"     pm.response.to.be.withBody;\r",
+									"     pm.response.to.be.json; // this assertion also checks if a body  exists, so the above check is not needed\r",
+									"});\r",
+									"\r",
+									"pm.test(\"updateUsers returns zero_updated, because the same data was given\", function () {\r",
+									"     const jsonData = pm.response.json();\r",
+									"     pm.expect(jsonData).to.have.property('err');\r",
+									"     pm.expect(jsonData.err).to.be.equal('zero_updated');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"users\": [\n\t\t{\n\t\t\t\"id\": \"{{register.id}}\",\n\t\t\t\"name\": \"{{register.name}}\",\n\t\t\t\"email\": \"{{register.email}}\",\n\t\t\t\"gender\": \"{{register.gender}}\",\n\t\t\t\"nationality\": \"{{register.nationality}}\"\n\t\t}\n\t]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{restapiURL}}/public/updateUsers",
+							"host": [
+								"{{restapiURL}}"
+							],
+							"path": [
+								"public",
+								"updateUsers"
+							]
+						},
+						"description": "Bad updateuser in the restapi"
+					},
+					"response": []
+				},
+				{
+					"name": "update user -- ok",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "acaf96ac-e27b-480c-abac-0446eceb9b59",
+								"exec": [
+									"const register = JSON.parse(pm.environment.get('register'));",
+									"console.log(register);",
+									"",
+									"pm.variables.set('register.id', register.id);",
+									"pm.variables.set('register.name', register.name + '.test');",
+									"pm.variables.set('register.email', register.email + '.test');",
+									"pm.variables.set('register.gender', register.gender);",
+									"pm.variables.set('register.nationality', register.nationality + '.test');"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "ed0c8336-af4f-4352-9206-47bcb72f538f",
+								"exec": [
+									"pm.test(\"updateUsers ok response, beacause good input data\", function () {\r",
+									"     pm.response.to.be.ok;\r",
+									"     // assert that the response has a valid JSON body\r",
+									"     pm.response.to.be.withBody;\r",
+									"     pm.response.to.be.json; // this assertion also checks if a body  exists, so the above check is not needed\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"users\": [\n\t\t{\n\t\t\t\"id\": \"{{register.id}}\",\n\t\t\t\"name\": \"{{register.name}}\",\n\t\t\t\"email\": \"{{register.email}}\",\n\t\t\t\"gender\": \"{{register.gender}}\",\n\t\t\t\"nationality\": \"{{register.nationality}}\"\n\t\t}\n\t]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{restapiURL}}/public/updateUsers",
+							"host": [
+								"{{restapiURL}}"
+							],
+							"path": [
+								"public",
+								"updateUsers"
+							]
+						},
+						"description": "Good updateuser in the restapi"
+					},
+					"response": []
+				},
+				{
+					"name": "getAllNeptuns",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "cb55487a-8f6e-4b90-a921-a885192c7dea",
+								"exec": [
+									"pm.test(\"status supposed to be OK\", function () {\r",
+									"     pm.response.to.be.ok; \r",
+									"     pm.response.to.be.json; \r",
+									"});\r",
+									"\r",
+									"const json = pm.response.json();\r",
+									"\r",
+									"pm.test(\"should include the admin user and the recently created user\", function () {\r",
+									"    const admin = pm.environment.get('username');\r",
+									"    const user2 = JSON.parse(pm.environment.get('register')).id;\r",
+									"    pm.expect(json.msg).to.contain.members([ admin, user2]);\r",
+									"});\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{restapiURL}}/public/getAllNeptuns",
+							"host": [
+								"{{restapiURL}}"
+							],
+							"path": [
+								"public",
+								"getAllNeptuns"
+							]
+						},
+						"description": "GetAllNeptuns shoud return all the id in the database, including the one we created just now. "
+					},
+					"response": []
+				}
+			],
+			"description": "User tests",
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "7f055e6a-9d95-4f11-b7e7-c651d37586b9",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "6bbf1e6b-62ac-44b0-8346-4b9eb63b2dbd",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "room_testing",
+			"item": [
+				{
+					"name": "Add rooms - bad property",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "163b8caa-dab6-40ea-9a2b-21db18421b79",
+								"exec": [
+									"pm.test(\"addRooms fail due to property\", function () {\r",
+									"     // assert that the status code is 200\r",
+									"     pm.response.to.be.badRequest; // info, success, redirection, clientError,  serverError, are other variants\r",
+									"     // assert that the response has a valid JSON body\r",
+									"     pm.response.to.be.withBody;\r",
+									"     pm.response.to.be.json; // this assertion also checks if a body  exists, so the above check is not needed\r",
+									"});\r",
+									"\r",
+									"pm.test(\"addRooms returns with zero_updated\", function () {\r",
+									"    const jsonResponse = pm.response.json();\r",
+									"    pm.expect(jsonResponse).to.have.property('err');\r",
+									"    pm.expect(jsonResponse.err).to.be.equal('zero_updated');\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"rooms\": [\n\t\t{\n\t\t\t\"id\": \"asd\",\n\t\t\t\"name\": \"dsa\",\n\t\t\t\"building\": \"dsaa\",\n\t\t\t\"floor\": 5,\n\t\t\t\"capacityNON\": 3\n\t\t}\t\n\t]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{restapiURL}}/public/addRooms",
+							"host": [
+								"{{restapiURL}}"
+							],
+							"path": [
+								"public",
+								"addRooms"
+							]
+						},
+						"description": "Add room to the system. "
+					},
+					"response": []
+				},
+				{
+					"name": "Add rooms succ",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "da886ce3-4609-400a-8236-531533480691",
+								"exec": [
+									"pm.test(\"addRooms adds room\", function () {\r",
+									"     // assert that the status code is 200\r",
+									"     pm.response.to.be.ok; // info, success, redirection, clientError,  serverError, are other variants\r",
+									"     // assert that the response has a valid JSON body\r",
+									"     pm.response.to.be.withBody;\r",
+									"     pm.response.to.be.json; // this assertion also checks if a body  exists, so the above check is not needed\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"rooms\": [\n\t\t{\n\t\t\t\"id\": \"testtesttest\",\n\t\t\t\"name\": \"Test Room\",\n\t\t\t\"building\": \"Test building\",\n\t\t\t\"floor\": 5,\n\t\t\t\"capacity\": 3\n\t\t}\t\n\t]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{restapiURL}}/public/addRooms",
+							"host": [
+								"{{restapiURL}}"
+							],
+							"path": [
+								"public",
+								"addRooms"
+							]
+						},
+						"description": "Add room to the system. "
+					},
+					"response": []
+				},
+				{
+					"name": "Add rooms err - id exists",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "723b40af-2ff6-4410-9ace-1f7178db57f7",
+								"exec": [
+									"pm.test(\"addRooms room exists -- does not add\", function () {\r",
+									"     // assert that the status code is 200\r",
+									"     pm.response.to.be.badRequest; // info, success, redirection, clientError,  serverError, are other variants\r",
+									"     // assert that the response has a valid JSON body\r",
+									"     pm.response.to.be.withBody;\r",
+									"     pm.response.to.be.json; // this assertion also checks if a body  exists, so the above check is not needed\r",
+									"});\r",
+									"\r",
+									"pm.test(\"addRooms returns with zero_updated\", function () {\r",
+									"    const jsonResponse = pm.response.json();\r",
+									"    pm.expect(jsonResponse).to.have.property('err');\r",
+									"    pm.expect(jsonResponse.err).to.be.equal('zero_updated');\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"rooms\": [\n\t\t{\n\t\t\t\"id\": \"testtesttest\",\n\t\t\t\"name\": \"Test Room\",\n\t\t\t\"building\": \"Test building\",\n\t\t\t\"floor\": 5,\n\t\t\t\"capacity\": 3\n\t\t}\t\n\t]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{restapiURL}}/public/addRooms",
+							"host": [
+								"{{restapiURL}}"
+							],
+							"path": [
+								"public",
+								"addRooms"
+							]
+						},
+						"description": "Room cannot be added, because it exists. "
+					},
+					"response": []
+				},
+				{
+					"name": "update existing room -- fail",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ec6f989f-316e-4c2c-805d-915e666612d3",
+								"exec": [
+									"pm.test(\"updateRooms -- fail, nothing changed\", function () {\r",
+									"     // assert that the status code is 200\r",
+									"     pm.response.to.be.badRequest; // info, success, redirection, clientError,  serverError, are other variants\r",
+									"     // assert that the response has a valid JSON body\r",
+									"     pm.response.to.be.withBody;\r",
+									"     pm.response.to.be.json; // this assertion also checks if a body  exists, so the above check is not needed\r",
+									"});\r",
+									"\r",
+									"pm.test(\"updateRooms returns with zero_updated\", function () {\r",
+									"    const jsonResponse = pm.response.json();\r",
+									"    pm.expect(jsonResponse).to.have.property('err');\r",
+									"    pm.expect(jsonResponse.err).to.be.equal('zero_updated');\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"rooms\": [\n\t\t{\n\t\t\t\"id\": \"testtesttest\",\n\t\t\t\"name\": \"Test Room\",\n\t\t\t\"building\": \"Test building\",\n\t\t\t\"floor\": 5,\n\t\t\t\"capacity\": 3\n\t\t}\t\n\t]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{restapiURL}}/public/updateRooms",
+							"host": [
+								"{{restapiURL}}"
+							],
+							"path": [
+								"public",
+								"updateRooms"
+							]
+						},
+						"description": "If dont change anything, it will give back an error that nothing changed. "
+					},
+					"response": []
+				},
+				{
+					"name": "update existing room -- succ",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1bf6dff6-fee2-445b-b8e8-f264cc2238b5",
+								"exec": [
+									"pm.test(\"updateRooms successful change\", function () {\r",
+									"     // assert that the status code is 200\r",
+									"     pm.response.to.be.ok; // info, success, redirection, clientError,  serverError, are other variants\r",
+									"     // assert that the response has a valid JSON body\r",
+									"     pm.response.to.be.withBody;\r",
+									"     pm.response.to.be.json; // this assertion also checks if a body  exists, so the above check is not needed\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"rooms\": [\n\t\t{\n\t\t\t\"id\": \"testtesttest\",\n\t\t\t\"name\": \"Test Room Edited\",\n\t\t\t\"building\": \"Test building\",\n\t\t\t\"floor\": 5,\n\t\t\t\"capacity\": 3\n\t\t}\t\n\t]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{restapiURL}}/public/updateRooms",
+							"host": [
+								"{{restapiURL}}"
+							],
+							"path": [
+								"public",
+								"updateRooms"
+							]
+						},
+						"description": "We change the name, so the room will be updated"
+					},
+					"response": []
+				},
+				{
+					"name": "get a single room",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c59d90b3-6505-4ad2-9ca0-1cb6b5bdbc92",
+								"exec": [
+									"pm.test(\"getRooms successful\", function () {\r",
+									"     // assert that the status code is 200\r",
+									"     pm.response.to.be.ok; // info, success, redirection, clientError,  serverError, are other variants\r",
+									"     // assert that the response has a valid JSON body\r",
+									"     pm.response.to.be.withBody;\r",
+									"     pm.response.to.be.json; // this assertion also checks if a body  exists, so the above check is not needed\r",
+									"});\r",
+									"\r",
+									"pm.test(\"the updateRooms updated the room itself successful change\", function () {\r",
+									"     const jsonResponse = pm.response.json();\r",
+									"     pm.expect(jsonResponse.msg).to.be.an('object');\r",
+									"     pm.expect(jsonResponse.msg.name).to.be.equal('Test Room Edited');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"room\": \"testtesttest\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{restapiURL}}/public/getRoom",
+							"host": [
+								"{{restapiURL}}"
+							],
+							"path": [
+								"public",
+								"getRoom"
+							]
+						},
+						"description": "Check if the name is ok"
+					},
+					"response": []
+				},
+				{
+					"name": "get all rooms",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a793d378-6857-4f4d-825e-3467b83fb4af",
+								"exec": [
+									"pm.test(\"getRooms successful\", function () {\r",
+									"     // assert that the status code is 200\r",
+									"     pm.response.to.be.ok; // info, success, redirection, clientError,  serverError, are other variants\r",
+									"     // assert that the response has a valid JSON body\r",
+									"     pm.response.to.be.withBody;\r",
+									"     pm.response.to.be.json; // this assertion also checks if a body  exists, so the above check is not needed\r",
+									"});\r",
+									"\r",
+									"const json = pm.response.json();\r",
+									"\r",
+									"pm.test(\"getRooms - check if it returns array\",  () =>  {\r",
+									"     pm.expect(json.msg).to.be.an('array');\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"getRooms - check if the added room is there\",  () =>  {\r",
+									"     const filteredData = json.msg.filter( (room) => room.id === 'testtesttest');\r",
+									"     pm.expect(filteredData).to.have.lengthOf(1);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{restapiURL}}/public/getAllRooms",
+							"host": [
+								"{{restapiURL}}"
+							],
+							"path": [
+								"public",
+								"getAllRooms"
+							]
+						},
+						"description": "Get all the rooms, check if the response is ok, then check if it contains the previously added room"
+					},
+					"response": []
+				}
+			],
+			"description": "Test rooms - wuthout room assignment",
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "5ac49919-9ae2-4710-af1a-dcc533786c6f",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "8528a114-9093-4f44-9286-41a286cf0864",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "room_assign",
+			"item": [
+				{
+					"name": "get curr room assignment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2ed52d60-dac7-433c-a175-df735301e150",
+								"exec": [
+									"pm.test(\"getUserRooms successful\", function () {\r",
+									"     pm.response.to.be.ok; \r",
+									"     pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"getUserRooms no room for the created user\", function () {\r",
+									"     const res = pm.response.json().msg;\r",
+									"     pm.expect(res).to.be.an('array');\r",
+									"     \r",
+									"     const has = res.some( (row) => row.user_id === pm.variables.get('user'));\r",
+									"     pm.expect(has).to.be.equal(false);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "382e7f9a-c1ed-4dea-868d-d50e7491163d",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{restapiURL}}/public/getUserWithRooms",
+							"host": [
+								"{{restapiURL}}"
+							],
+							"path": [
+								"public",
+								"getUserWithRooms"
+							]
+						},
+						"description": "Check current room assignment. "
+					},
+					"response": []
+				},
+				{
+					"name": "edit room assignment --- error",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3ffe40d8-e469-4bb1-b862-67ec196680c0",
+								"exec": [
+									"pm.test(\"updateUserRooms should fail -- room not exists\", function () {\r",
+									"     pm.response.to.be.badRequest; \r",
+									"     pm.response.to.be.json;\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "e9b7fe98-9878-4c6a-aabb-1a26c6125e41",
+								"exec": [
+									"const register = pm.environment.get('register');",
+									"",
+									"pm.variables.set('user', register.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"updated\": [{\n\t\t\"user_id\": \"{{user}}\",\n\t\t\"room_id\": \"testtesttesttesttesttesttesttesttesttesttesttest\"\n\t}],\n\t\"deleted\": []\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{restapiURL}}/public/updateUserRooms",
+							"host": [
+								"{{restapiURL}}"
+							],
+							"path": [
+								"public",
+								"updateUserRooms"
+							]
+						},
+						"description": "Try to add user to non existing room"
+					},
+					"response": []
+				},
+				{
+					"name": "edit room assignment-- SUCC",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b08c7742-fea4-4aaf-bca0-105f74863dfb",
+								"exec": [
+									"pm.test(\"updateUserRooms should be ok this time\", function () {\r",
+									"     pm.response.to.be.ok; \r",
+									"     pm.response.to.be.json;\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "9d1b4a3d-f795-4a99-afac-30f161263d71",
+								"exec": [
+									"const register = JSON.parse(pm.environment.get('register'));",
+									"",
+									"pm.variables.set('user', register.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"updated\": [{\n\t\t\"user_id\": \"{{user}}\",\n\t\t\"room_id\": \"testtesttest\"\n\t}],\n\t\"deleted\": []\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{restapiURL}}/public/updateUserRooms",
+							"host": [
+								"{{restapiURL}}"
+							],
+							"path": [
+								"public",
+								"updateUserRooms"
+							]
+						},
+						"description": "Add the new user to the room. "
+					},
+					"response": []
+				},
+				{
+					"name": "new user should be in room now",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5fb1789e-8085-4bd3-8d40-bf94ff46413c",
+								"exec": [
+									"pm.test(\"getUserRooms successful\", function () {\r",
+									"     pm.response.to.be.ok; \r",
+									"     pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"getUserRooms created user should have a room now\", function () {\r",
+									"     const res = pm.response.json().msg;\r",
+									"     pm.expect(res).to.be.an('array');\r",
+									"     \r",
+									"     const has = res.some( (row) => row.user_id === pm.variables.get('user'));\r",
+									"     pm.expect(has).to.be.equal(true);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "01c4144e-ee88-4a32-9ed5-33471935d2cf",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{restapiURL}}/public/getUserWithRooms",
+							"host": [
+								"{{restapiURL}}"
+							],
+							"path": [
+								"public",
+								"getUserWithRooms"
+							]
+						},
+						"description": "The new user should have a room now"
+					},
+					"response": []
+				}
+			],
+			"description": "Testing Room Assignment endpoint",
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "string"
+					}
+				]
+			},
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "permissions",
+			"item": [
+				{
+					"name": "get curr permissions",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "cd974152-4d7f-4574-abed-2158c31b5840",
+								"exec": [
+									"pm.test(\"get permissions successfully\", function () {\r",
+									"     pm.response.to.be.ok; \r",
+									"     pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"it should have a permissions, and a userPermissions property. Both an array\", function () {\r",
+									"     const res = pm.response.json().msg;\r",
+									"     pm.expect(res).to.have.property('permissions');\r",
+									"     pm.expect(res).to.have.property('userPermissions');\r",
+									"     \r",
+									"     pm.expect(res.permissions).to.be.an('array');\r",
+									"     pm.expect(res.userPermissions).to.be.an('array');\r",
+									"     \r",
+									"});\r",
+									"\r",
+									"pm.test(\"The recently created user should not have any permissions\", function () {\r",
+									"     const res = pm.response.json().msg.userPermissions;\r",
+									"     const register = JSON.parse(pm.environment.get('register'));\r",
+									"     const newUser = res.find( el => el.id === register.id);\r",
+									"     pm.expect(newUser).to.not.be.equal(undefined);\r",
+									"     pm.expect(newUser.permissions).to.be.equal('');\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "57db260b-782f-4335-b7ef-d6e3a1596e33",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{restapiURL}}/public/getAllPermissions",
+							"host": [
+								"{{restapiURL}}"
+							],
+							"path": [
+								"public",
+								"getAllPermissions"
+							]
+						},
+						"description": "Get permissions. Newly created user should have no permissions. "
+					},
+					"response": []
+				},
+				{
+					"name": "add permissions to user -- error",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ec964411-b0b2-421c-9873-d71b3e10c6e8",
+								"exec": [
+									"pm.test(\"If we try to delete a permission that not exists, the program should not add the permissions we wanted\", function () {\r",
+									"     pm.response.to.be.badRequest; \r",
+									"     pm.response.to.be.json;\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "01726599-ab16-406c-8a8b-b73fa29bc120",
+								"exec": [
+									"const register = JSON.parse(pm.environment.get('register'));",
+									"",
+									"pm.variables.set('user', register.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"add\": [{\n\t\t\"user\": \"{{user}}\",\n\t\t\"permission\": 0\n\t}],\n\t\"delete\": [{\n\t\t\"user\": \"{{user}}\",\n\t\t\"permission\": 1\n\t}]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{restapiURL}}/public/updatePermissions",
+							"host": [
+								"{{restapiURL}}"
+							],
+							"path": [
+								"public",
+								"updatePermissions"
+							]
+						},
+						"description": "Try to add a permission to the user, and remove one he does not own. The program should not add even one. "
+					},
+					"response": []
+				},
+				{
+					"name": "get curr permission -- user should not have one. ",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f50d0ffd-926d-4f21-8fed-68f119a711d6",
+								"exec": [
+									"pm.test(\"get permissions successfully\", function () {\r",
+									"     pm.response.to.be.ok; \r",
+									"     pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"The recently created user should not have any permissions, because the previous request failed\", function () {\r",
+									"     const res = pm.response.json().msg.userPermissions;\r",
+									"     const register = JSON.parse(pm.environment.get('register'));\r",
+									"     const newUser = res.find( el => el.id === register.id);\r",
+									"     pm.expect(newUser).to.not.be.equal(undefined);\r",
+									"     pm.expect(newUser.permissions).to.be.equal('');\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "6b677754-07a6-416b-a36e-5c95ea2bbbb7",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{restapiURL}}/public/getAllPermissions",
+							"host": [
+								"{{restapiURL}}"
+							],
+							"path": [
+								"public",
+								"getAllPermissions"
+							]
+						},
+						"description": "Get permissions. Newly created user should have no permissions -- because the last request failed. "
+					},
+					"response": []
+				},
+				{
+					"name": "add permissions to user successfully",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0ea58a3e-f55e-4a14-ad39-6246d55a9fea",
+								"exec": [
+									"pm.test(\"It should be ok now\", function () {\r",
+									"     pm.response.to.be.ok; \r",
+									"     pm.response.to.be.json;\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "59631d37-a5b6-4323-b16b-fe05da9f8639",
+								"exec": [
+									"const register = JSON.parse(pm.environment.get('register'));",
+									"",
+									"pm.variables.set('user', register.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"add\": [{\n\t\t\"user\": \"{{user}}\",\n\t\t\"permission\": 0\n\t}],\n\t\"delete\": []\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{restapiURL}}/public/updatePermissions",
+							"host": [
+								"{{restapiURL}}"
+							],
+							"path": [
+								"public",
+								"updatePermissions"
+							]
+						},
+						"description": "Now try to add permissions to the user. "
+					},
+					"response": []
+				},
+				{
+					"name": "get curr permission -- user should have ",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "fd61eec5-9c74-46f9-bcea-470a1e12c4cb",
+								"exec": [
+									"pm.test(\"get permissions successfully\", function () {\r",
+									"     pm.response.to.be.ok; \r",
+									"     pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"The recently created user should not have any permissions, because the previous request failed\", function () {\r",
+									"     const res = pm.response.json().msg.userPermissions;\r",
+									"     const register = JSON.parse(pm.environment.get('register'));\r",
+									"     const newUser = res.find( el => el.id === register.id);\r",
+									"     pm.expect(newUser).to.not.be.equal(undefined);\r",
+									"     pm.expect(newUser.permissions).to.not.be.equal('');\r",
+									"     const perms = newUser.permissions.split(',');\r",
+									"     perms.forEach(function(part, index) {\r",
+									"         this[index] = parseInt(part);\r",
+									"     }, perms); // use arr as this\r",
+									"     pm.expect(perms).to.have.lengthOf(1);\r",
+									"     pm.expect(perms[0]).to.be.equal(0);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "0fb9aad0-1a1a-4209-bc10-a573d972ed6f",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{restapiURL}}/public/getAllPermissions",
+							"host": [
+								"{{restapiURL}}"
+							],
+							"path": [
+								"public",
+								"getAllPermissions"
+							]
+						},
+						"description": "Now the user should have the required permissions"
+					},
+					"response": []
+				}
+			],
+			"description": "Testing permissions endpoint in the restapi",
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "fd6422c6-3763-4c72-a60f-f1993853d696",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "9f582d98-715a-490b-ba78-c949e9fee9cb",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "maintenance",
+			"item": [
+				{
+					"name": "Add Error Report",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "92422cdd-636a-4a62-aeb5-83f7aba6a848",
+								"exec": [
+									"pm.test(\"Adding the error report, need translate should be OK\", function() {",
+									"    pm.response.to.be.ok;",
+									"    pm.response.to.be.json;",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "3d9d9e40-87d3-4291-a2c2-1a73b35ef60e",
+								"exec": [
+									"",
+									"pm.environment.set('errorlocation', (new Date()).getTime().toString());"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"type\": \"other\",\n\t\"location\": \"{{errorlocation}}\",\n\t\"issue\": \"Dui vivamus arcu felis bibendum. Mauris a diam maecenas sed enim ut sem viverra. Nec nam aliquam sem et tortor consequat id. Mattis molestie a iaculis at erat pellentesque adipiscing commodo elit. Amet cursus sit amet dictum sit amet justo donec enim. Suspendisse sed nisi lacus sed viverra tellus in hac. Sed nisi lacus sed viverra. Non quam lacus suspendisse faucibus interdum posuere. Diam donec adipiscing tristique risus nec feugiat in fermentum posuere. Vitae auctor eu augue ut. Facilisis gravida neque convallis a cras. Arcu felis bibendum ut tristique et egestas quis ipsum. Etiam sit amet nisl purus in mollis nunc. Consectetur purus ut faucibus pulvinar elementum integer enim neque. Amet cursus sit amet dictum. Augue neque gravida in fermentum et sollicitudin ac orci phasellus. Sit amet porttitor eget dolor morbi non arcu risus. Purus gravida quis blandit turpis.\",\n\t\"needTranslate\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{restapiURL}}/public/addErrorReport",
+							"host": [
+								"{{restapiURL}}"
+							],
+							"path": [
+								"public",
+								"addErrorReport"
+							]
+						},
+						"description": "Add error report successfully"
+					},
+					"response": []
+				},
+				{
+					"name": "translators see error",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3fee5c92-9796-47ec-b353-4dcfae550102",
+								"exec": [
+									"pm.test(\"Adding the error report, need translate should be OK\", function() {",
+									"    pm.response.to.be.ok;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Translator can see the newly added report\", function() {",
+									"    const res = pm.response.json().msg;",
+									"    pm.expect(res).to.be.an('array');",
+									"    pm.expect(res.length).to.be.above(0);",
+									"    const data = res.find( (item) => item.location === pm.environment.get('errorlocation'));",
+									"    pm.expect(data).to.not.be.equal(undefined);",
+									"    pm.environment.set('errorId', data.id);",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{restapiURL}}/public/getForeignText",
+							"host": [
+								"{{restapiURL}}"
+							],
+							"path": [
+								"public",
+								"getForeignText"
+							]
+						},
+						"description": "translators should see the errorReport"
+					},
+					"response": []
+				},
+				{
+					"name": "getErrorNumber in maintenance",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d636ffae-e2d3-4df4-8066-83a300f750c3",
+								"exec": [
+									"pm.test(\"Maintener should see the report, at least access it. \", function() {",
+									"    pm.response.to.be.ok;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Check weather the response is array, and save the size into variable\", function() {",
+									"    const res = pm.response.json().msg;",
+									"    pm.expect(res).to.be.an('array');",
+									"    pm.environment.set('numOfErrors', res.length);",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{restapiURL}}/public/getMaintenanceWork",
+							"host": [
+								"{{restapiURL}}"
+							],
+							"path": [
+								"public",
+								"getMaintenanceWork"
+							]
+						},
+						"description": "Save maintenance number to variable before making the translation"
+					},
+					"response": []
+				},
+				{
+					"name": "translate error report",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a0abf8dd-7865-4ee3-ad67-daf8321def9f",
+								"exec": [
+									"pm.test(\"Translator should be able to tranlate text\", function() {",
+									"    pm.response.to.be.ok;",
+									"    pm.response.to.be.json;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": \"{{errorId}}\",\n\t\"text\": \"TEXT TRANSLATE TEST\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{restapiURL}}/public/translateErrorReport",
+							"host": [
+								"{{restapiURL}}"
+							],
+							"path": [
+								"public",
+								"translateErrorReport"
+							]
+						},
+						"description": "Test if translating an error report works"
+					},
+					"response": []
+				},
+				{
+					"name": "number of reports should be larger",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "557be97e-4ae2-4898-9d81-ca727ea490de",
+								"exec": [
+									"pm.test(\"Maintener should see the report, at least access it. \", function() {",
+									"    pm.response.to.be.ok;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Check weather the response is array, and check if the size is the awaited one\", function() {",
+									"    const res = pm.response.json().msg;",
+									"    pm.expect(res).to.be.an('array');",
+									"    const prevLen = parseInt(pm.environment.get('numOfErrors'));",
+									"    pm.expect(res).to.have.lengthOf(prevLen + 1);",
+									"});",
+									"",
+									"pm.test(\"Check weather it contains the given error. \", function() {",
+									"    const res = pm.response.json().msg;",
+									"    pm.expect(res).to.be.an('array');",
+									"    const id = parseInt(pm.environment.get('errorId'));",
+									"    const data = res.filter( (item) => item.id === id);",
+									"    ",
+									"    pm.expect(data).to.not.be.equal(undefined);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{restapiURL}}/public/getMaintenanceWork",
+							"host": [
+								"{{restapiURL}}"
+							],
+							"path": [
+								"public",
+								"getMaintenanceWork"
+							]
+						},
+						"description": "1 report was translated, so it should be the previous value + 1. "
+					},
+					"response": []
+				},
+				{
+					"name": "maintenance done",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c1f44fa5-d69c-44e3-94ed-7fc9a482af39",
+								"exec": [
+									"pm.test(\"Maintener should be able to set job done. \", function() {",
+									"    pm.response.to.be.ok;",
+									"    pm.response.to.be.json;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": \"{{errorId}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{restapiURL}}/public/maintenanceDone",
+							"host": [
+								"{{restapiURL}}"
+							],
+							"path": [
+								"public",
+								"maintenanceDone"
+							]
+						},
+						"description": "Set the maintenance to Done"
+					},
+					"response": []
+				},
+				{
+					"name": "getErrorHistoryUser",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ce9b2aac-854f-4ce9-ad1c-a7cd69eb5af7",
+								"exec": [
+									"pm.test(\"User should see the report\", function() {",
+									"    pm.response.to.be.ok;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"User should find the report as solved. \", function() {",
+									"    const datas = pm.response.json().msg; ",
+									"    pm.expect(datas).to.be.an('array');",
+									"    ",
+									"    const found = datas.find( (item) => item.location === pm.environment.get('errorlocation'));",
+									"    pm.expect(found).to.not.be.equal(undefined);",
+									"    pm.expect(found.status).to.be.equal('solved');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{restapiURL}}/public/getErrorHistoryUser",
+							"host": [
+								"{{restapiURL}}"
+							],
+							"path": [
+								"public",
+								"getErrorHistoryUser"
+							]
+						},
+						"description": "Check if the user can see it's history, and the job is marked done. "
+					},
+					"response": []
+				},
+				{
+					"name": "getErrorNumber in maintenance -2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "018e0dd4-a5a3-40b6-ab8a-87d76838948f",
+								"exec": [
+									"pm.test(\"Maintener should see the report, at least access it. \", function() {",
+									"    pm.response.to.be.ok;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Check weather the response is array, and save the size into variable\", function() {",
+									"    const res = pm.response.json().msg;",
+									"    pm.expect(res).to.be.an('array');",
+									"    const prevLen = parseInt(pm.environment.get('numOfErrors'));",
+									"    pm.expect(res).to.have.lengthOf(prevLen);",
+									"    ",
+									"    // unset variables",
+									"    ",
+									"    pm.environment.unset('numOfErrors');",
+									"    pm.environment.unset('errorId');",
+									"    pm.environment.unset('errorlocation');",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{restapiURL}}/public/getMaintenanceWork",
+							"host": [
+								"{{restapiURL}}"
+							],
+							"path": [
+								"public",
+								"getMaintenanceWork"
+							]
+						},
+						"description": "Check if maintenance number changed back. (lowered by 1)"
+					},
+					"response": []
+				}
+			],
+			"description": "Check maintenance endpoints",
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "37dcab53-68e8-4cca-ac43-1e28c1f4b88c",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "3564e5ab-20da-4650-a2b6-c6d4cc4a40e4",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "guests",
+			"item": [
+				{
+					"name": "add guest",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "0a62e448-09d9-4fee-9588-ee86ae47f93b",
+								"exec": [
+									"const json = JSON.parse(pm.environment.get('register'));",
+									"",
+									"pm.variables.set('user', json.id);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "06a1bc0b-9e95-425e-ba3f-cf9a5c09b0a4",
+								"exec": [
+									"pm.test(\"should return with ok status\", () => {",
+									"    pm.response.to.be.ok;",
+									"    pm.response.to.be.json;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"host\": \"{{user}}\",\n\t\"guest_name\": \"Test John\",\n\t\"guest_id\": \"123456789BA\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{restapiURL}}/public/addGuest",
+							"host": [
+								"{{restapiURL}}"
+							],
+							"path": [
+								"public",
+								"addGuest"
+							]
+						},
+						"description": "Add a guest to the newly created user"
+					},
+					"response": []
+				},
+				{
+					"name": "guest should be seen",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "cb3cbe16-82c2-410b-833d-969d9c0b1bea",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "2d745274-4c49-4325-9b27-71aecfb72046",
+								"exec": [
+									"pm.test(\"should return with ok status\", () => {",
+									"    pm.response.to.be.ok;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"message should contain at least 1 row. \", () => {",
+									"    const json = pm.response.json().msg;",
+									"    pm.expect(json).to.be.an('array');",
+									"    pm.expect(json.length).to.be.above(0);",
+									"    const user = JSON.parse(pm.environment.get('register')).id;",
+									"    const row = json.find(item => item.guest_id === \"123456789BA\");",
+									"    pm.expect(row).to.not.be.equal(undefined);",
+									"    pm.environment.set('guestId', row.id);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{restapiURL}}/public/getActiveGuests",
+							"host": [
+								"{{restapiURL}}"
+							],
+							"path": [
+								"public",
+								"getActiveGuests"
+							]
+						},
+						"description": "Check if added guest is in db and save it into environment variable"
+					},
+					"response": []
+				},
+				{
+					"name": "guest left",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "f1712b07-5946-45bb-aace-a48969e32aa3",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "f08d40cd-57d1-4aed-b38e-a87039f749ec",
+								"exec": [
+									"pm.test(\"should return with ok status\", () => {",
+									"    pm.response.to.be.ok;",
+									"    pm.response.to.be.json;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": {{guestId}}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{restapiURL}}/public/guestLeft",
+							"host": [
+								"{{restapiURL}}"
+							],
+							"path": [
+								"public",
+								"guestLeft"
+							]
+						},
+						"description": "Guest left the dorm"
+					},
+					"response": []
+				},
+				{
+					"name": "guest should be in history",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "b9d698e8-b007-4776-827f-42e1509e7d3a",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "15a38709-72a6-445c-8770-57f7ff89db25",
+								"exec": [
+									"pm.test(\"should return with ok status\", () => {",
+									"    pm.response.to.be.ok;",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"message should contain at least 1 row. \", () => {",
+									"    const json = pm.response.json().msg;",
+									"    pm.expect(json).to.be.an('array');",
+									"    pm.expect(json.length).to.be.above(0);",
+									"});",
+									"",
+									"pm.test(\"message should contain the prevously registered guest\", () => {",
+									"    const json = pm.response.json().msg;",
+									"    const user = JSON.parse(pm.environment.get('register')).id;",
+									"    const row = json.find(item => item.id === pm.environment.get('guestId'));",
+									"    pm.expect(row).to.not.be.equal(undefined);",
+									"    ",
+									"    pm.environment.unset('guestId');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{restapiURL}}/public/getHistGuests",
+							"host": [
+								"{{restapiURL}}"
+							],
+							"path": [
+								"public",
+								"getHistGuests"
+							]
+						},
+						"description": "Checked out guest should be in the history"
+					},
+					"response": []
+				}
+			],
+			"description": "Testing the guest functionality",
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "ada29a66-ee4a-43db-948e-b06276a601d4",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "915fdfe9-1320-430a-979d-c2a1bc4eb95b",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "keys",
+			"item": [
+				{
+					"name": "getKeyData",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4f4b368e-1784-4154-b636-af17f7b2bfc8",
+								"exec": [
+									"pm.test(\"Key should be available \", () => {",
+									"    const res = pm.response.json().msg;",
+									"    pm.expect(res).to.be.an('array');",
+									"    pm.expect(res.length).to.be.above(0);",
+									"    pm.expect(res[0].end_time).to.not.be.equal(null);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{restapiURL}}/public/getKeyData",
+							"host": [
+								"{{restapiURL}}"
+							],
+							"path": [
+								"public",
+								"getKeyData"
+							]
+						},
+						"description": "Check the status of <?> first key. Save it into variable"
+					},
+					"response": []
+				},
+				{
+					"name": "take key ",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "8cd49408-5e26-4c01-a388-e3876c0c22f5",
+								"exec": [
+									"const json = JSON.parse(pm.environment.get('register'));",
+									"",
+									"pm.variables.set('user', json.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"key\": 1,\n\t\"takenBy\": \"{{user}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{restapiURL}}/public/keyTaken",
+							"host": [
+								"{{restapiURL}}"
+							],
+							"path": [
+								"public",
+								"keyTaken"
+							]
+						},
+						"description": "Take the key by the recently created user"
+					},
+					"response": []
+				},
+				{
+					"name": "getKeyData2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ca6532b0-767a-40d7-b825-465d850f7a8f",
+								"exec": [
+									"pm.test(\"Key should not be available \", () => {",
+									"    const res = pm.response.json().msg;",
+									"    pm.expect(res).to.be.an('array');",
+									"    pm.expect(res.length).to.be.above(0);",
+									"    pm.expect(res[0].end_time).to.be.equal(null);",
+									"    ",
+									"    pm.environment.set('keyId', res[0].id);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{restapiURL}}/public/getKeyData",
+							"host": [
+								"{{restapiURL}}"
+							],
+							"path": [
+								"public",
+								"getKeyData"
+							]
+						},
+						"description": "Check the status of <?> first key, and compare to the previous value. "
+					},
+					"response": []
+				},
+				{
+					"name": "receive key",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": {{keyId}}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{restapiURL}}/public/keyReceived",
+							"host": [
+								"{{restapiURL}}"
+							],
+							"path": [
+								"public",
+								"keyReceived"
+							]
+						},
+						"description": "Receive the key. "
+					},
+					"response": []
+				},
+				{
+					"name": "getKeyData3",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "33854ec1-b56d-4ac2-a26c-14196a768ee3",
+								"exec": [
+									"pm.test(\"Key should be available again\", () => {",
+									"    const res = pm.response.json().msg;",
+									"    pm.expect(res).to.be.an('array');",
+									"    pm.expect(res.length).to.be.above(0);",
+									"    pm.expect(res[0].end_time).to.not.be.equal(null);",
+									"    pm.environment.unset('keyId');",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{restapiURL}}/public/getKeyData",
+							"host": [
+								"{{restapiURL}}"
+							],
+							"path": [
+								"public",
+								"getKeyData"
+							]
+						},
+						"description": "Check the status of <?> first key, and compare to the previous value. "
+					},
+					"response": []
+				}
+			],
+			"description": "Testing the key taking and receiving endpoints",
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "bf8368bf-55c3-46ff-8cfc-9c86fb9047e7",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "37f1d814-aa35-4cd5-8621-d73506e2897f",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"should return ok status\", () => {",
+							"    pm.response.to.be.ok;",
+							"    pm.response.to.be.json;",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "event",
+			"item": [
+				{
+					"name": "getOwnEvents 1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d9489724-7c07-44fd-806c-4e9e8a27b121",
+								"exec": [
+									"pm.test(\"Save out number of requests \", () => {",
+									"    const res = pm.response.json().msg;",
+									"    pm.expect(res).to.be.an('array');",
+									"    ",
+									"    pm.environment.set('numberOfOwnEvents', res.length);",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{restapiURL}}/public/getOwnEvents",
+							"host": [
+								"{{restapiURL}}"
+							],
+							"path": [
+								"public",
+								"getOwnEvents"
+							]
+						},
+						"description": "Save number of own events"
+					},
+					"response": []
+				},
+				{
+					"name": "getAllEvents 1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d8a22b83-9601-4b31-8dfa-2d534e019251",
+								"exec": [
+									"pm.test(\"Save out number of requests \", () => {",
+									"    const res = pm.response.json().msg;",
+									"    pm.expect(res).to.be.an('array');",
+									"    ",
+									"    pm.environment.set('numberOfAllEvents', res.length);",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{restapiURL}}/public/getAllEvents",
+							"host": [
+								"{{restapiURL}}"
+							],
+							"path": [
+								"public",
+								"getAllEvents"
+							]
+						},
+						"description": "Save number of all events"
+					},
+					"response": []
+				},
+				{
+					"name": "add Event",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"test\",\n\t\"num\": \"test\",\n\t\"date\": \"test\",\n\t\"location\": \"test\",\n\t\"tel\": \"test\",\n\t\"description\": \"test\",\n\t\"partic_dorm\": \"test\",\n\t\"partic_out\": \"test\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{restapiURL}}/public/addEvent",
+							"host": [
+								"{{restapiURL}}"
+							],
+							"path": [
+								"public",
+								"addEvent"
+							]
+						},
+						"description": "Add an event"
+					},
+					"response": []
+				},
+				{
+					"name": "getOwnEvents 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "083ef13c-9785-4659-8830-75e4601de359",
+								"exec": [
+									"pm.test(\"Number of events should be increased \", () => {",
+									"    const res = pm.response.json().msg;",
+									"    pm.expect(res).to.be.an('array');",
+									"    const prevLen = parseInt(pm.environment.get('numberOfOwnEvents'));",
+									"    pm.expect(res).to.have.lengthOf(prevLen + 1);",
+									"    pm.environment.unset('numberOfOwnEvents');",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{restapiURL}}/public/getOwnEvents",
+							"host": [
+								"{{restapiURL}}"
+							],
+							"path": [
+								"public",
+								"getOwnEvents"
+							]
+						},
+						"description": "Number of own events should be increased. "
+					},
+					"response": []
+				},
+				{
+					"name": "getAllEvents 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "8301cb46-7376-4034-8b3b-63c4a63dd2a9",
+								"exec": [
+									"pm.test(\"Number of events should be increased \", () => {",
+									"    const res = pm.response.json().msg;",
+									"    pm.expect(res).to.be.an('array');",
+									"    const prevLen = parseInt(pm.environment.get('numberOfAllEvents'));",
+									"    pm.expect(res).to.have.lengthOf(prevLen + 1);",
+									"    pm.environment.unset('numberOfAllEvents');",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{restapiURL}}/public/getAllEvents",
+							"host": [
+								"{{restapiURL}}"
+							],
+							"path": [
+								"public",
+								"getAllEvents"
+							]
+						},
+						"description": "Number of all events should be increased. "
+					},
+					"response": []
+				}
+			],
+			"description": "Testing restapi events functionalities. ",
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "acd740f7-ecd2-4103-b069-40d0e9bd5353",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "2b72f0f8-a270-4e87-9e49-bb68249f128b",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"should return ok status\", () => {",
+							"    pm.response.to.be.ok;",
+							"    pm.response.to.be.json;",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "delete",
+			"item": [
+				{
+					"name": "delete Users",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "86a684e1-079d-4003-b697-be3931b95dee",
+								"exec": [
+									"const register = JSON.parse(pm.environment.get('register'));",
+									"",
+									"pm.variables.set('register.id', register.id);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "48ffd3c4-45d9-469d-aff3-0c4aea0a8530",
+								"exec": [
+									"pm.test(\"delete user successfully\", function () {\r",
+									"     pm.response.to.be.ok;\r",
+									"     // assert that the response has a valid JSON body\r",
+									"     pm.response.to.be.withBody;\r",
+									"     pm.response.to.be.json; // this assertion also checks if a body  exists, so the above check is not needed\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"users\": [\"{{register.id}}\"]\n}\t\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{restapiURL}}/public/deleteUsers",
+							"host": [
+								"{{restapiURL}}"
+							],
+							"path": [
+								"public",
+								"deleteUsers"
+							]
+						},
+						"description": "Create new user "
+					},
+					"response": []
+				},
+				{
+					"name": "delete Users -- non existing",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "8565157e-92f3-4ddd-8dff-074f11445341",
+								"exec": [
+									"const register = JSON.parse(pm.environment.get('register'));",
+									"",
+									"pm.variables.set('register.id', register.id);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "211be731-3c95-4484-bde6-015001775d72",
+								"exec": [
+									"pm.test(\"delete non existing user -- return with status code of 400\", function () {\r",
+									"     pm.response.to.be.badRequest;\r",
+									"     // assert that the response has a valid JSON body\r",
+									"     pm.response.to.be.withBody;\r",
+									"     pm.response.to.be.json; // this assertion also checks if a body  exists, so the above check is not needed\r",
+									"});\r",
+									"\r",
+									"pm.test(\"delete user successfully\", function () {\r",
+									"     const jsonResponse = pm.response.json();\r",
+									"     pm.expect(jsonResponse).to.have.property('err');\r",
+									"     pm.expect(jsonResponse.err).to.be.equal('zero_deleted');\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"users\": [\"{{register.id}}\"]\n}\t\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{restapiURL}}/public/deleteUsers",
+							"host": [
+								"{{restapiURL}}"
+							],
+							"path": [
+								"public",
+								"deleteUsers"
+							]
+						},
+						"description": "# Delete non existing user\n\nDeleting a non existing user should return with an error. "
+					},
+					"response": []
+				},
+				{
+					"name": "deleteRoom -- error",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3eb60c42-e40b-4d82-8484-bbef04a3c464",
+								"exec": [
+									"pm.test(\"If there is non existing room, do not delete anything\", function () {\r",
+									"     // assert that the status code is 200\r",
+									"     pm.response.to.be.badRequest; // info, success, redirection, clientError,  serverError, are other variants\r",
+									"     // assert that the response has a valid JSON body\r",
+									"     pm.response.to.be.withBody;\r",
+									"     pm.response.to.be.json; // this assertion also checks if a body  exists, so the above check is not needed\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"rooms\": [ \"testtesttest\", \"testtesttest1\" ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{restapiURL}}/public/deleteRooms",
+							"host": [
+								"{{restapiURL}}"
+							],
+							"path": [
+								"public",
+								"deleteRooms"
+							]
+						},
+						"description": "Try to delete 2 rooms, but the second does not exist. "
+					},
+					"response": []
+				},
+				{
+					"name": "check if first room still exists",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0e48c8c1-c78a-4c9e-b3f9-c171b66421c0",
+								"exec": [
+									"pm.test(\"First room should still exist\", function () {\r",
+									"     // assert that the status code is 200\r",
+									"     pm.response.to.be.ok; // info, success, redirection, clientError,  serverError, are other variants\r",
+									"     // assert that the response has a valid JSON body\r",
+									"     pm.response.to.be.withBody;\r",
+									"     pm.response.to.be.json; // this assertion also checks if a body  exists, so the above check is not needed\r",
+									"});\r",
+									"\r",
+									"pm.test(\"First room should still be the edited room\", function () {\r",
+									"     const jsonResponse = pm.response.json();\r",
+									"     pm.expect(jsonResponse.msg).to.be.an('object');\r",
+									"     pm.expect(jsonResponse.msg.name).to.be.equal('Test Room Edited');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"room\": \"testtesttest\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{restapiURL}}/public/getRoom",
+							"host": [
+								"{{restapiURL}}"
+							],
+							"path": [
+								"public",
+								"getRoom"
+							]
+						},
+						"description": "In the previous example we tried to delete 2 rooms. The first one was an existing one, the second one was fake. Hopefully, it returned an error. \n\nCheck now if the first one is still in the system. "
+					},
+					"response": []
+				},
+				{
+					"name": "deleteRoom -- succ",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "64922f4a-30d4-4116-b558-9ef55a311529",
+								"exec": [
+									"pm.test(\"Now we should be able to delete the room\", function () {\r",
+									"     pm.response.to.be.ok; \r",
+									"     pm.response.to.be.withBody;\r",
+									"     pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"rooms\": [ \"testtesttest\" ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{restapiURL}}/public/deleteRooms",
+							"host": [
+								"{{restapiURL}}"
+							],
+							"path": [
+								"public",
+								"deleteRooms"
+							]
+						},
+						"description": "Delete the test room created before. "
+					},
+					"response": []
+				},
+				{
+					"name": "check if deleted room still exists - should not",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3b592676-41bf-4b1c-ab36-b8e14f87db53",
+								"exec": [
+									"pm.test(\"Since the room is deleted, it should return with error\", function () {\r",
+									"     // assert that the status code is 200\r",
+									"     pm.response.to.be.badRequest; // info, success, redirection, clientError,  serverError, are other variants\r",
+									"     // assert that the response has a valid JSON body\r",
+									"     pm.response.to.be.withBody;\r",
+									"     pm.response.to.be.json; // this assertion also checks if a body  exists, so the above check is not needed\r",
+									"});\r",
+									"\r",
+									"const json = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Error message should be bad_params\", () => {\r",
+									"    pm.expect(json.err).to.be.equal('bad_params');\r",
+									"});\r",
+									"\r",
+									"pm.environment.unset('token');"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"room\": \"testtesttest\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{restapiURL}}/public/getRoom",
+							"host": [
+								"{{restapiURL}}"
+							],
+							"path": [
+								"public",
+								"getRoom"
+							]
+						},
+						"description": "Check if deleted room still exists"
+					},
+					"response": []
+				}
+			],
+			"description": "At the end of the collection testing, we should delete every created rooms, users, etc",
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "63f4df87-747b-464a-8cf1-ed33d3e6015c",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "4438fc78-bfa9-4ac9-ae2c-515500a08f76",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "25cd527f-f08d-433c-842f-152ba8e5eebb",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "cca68676-0cf3-485f-bcad-83c5b2eaa5b9",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

@@ -19,10 +19,8 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e62e4c4c-964c-4eb3-8513-9ea306799253" name="Default Changelist" comment="remove configs">
+    <list default="true" id="e62e4c4c-964c-4eb3-8513-9ea306799253" name="Default Changelist" comment="fix">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/private/database/DatabaseController.php" beforeDir="false" afterPath="$PROJECT_DIR$/private/database/DatabaseController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,16 +75,16 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../dorm/restapi" />
+    <property name="settings.editor.selected.configurable" value="SQL Dialects" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Tonkatsu\PhpstormProjects\szakdoga\restapi\private\config" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Tonkatsu\PhpstormProjects\szakdoga\restapi\private" />
       <recent name="C:\Users\Tonkatsu\PhpstormProjects\szakdoga\restapi" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Tonkatsu\PhpstormProjects\szakdoga\restapi\private\config" />
     </key>
   </component>
   <component name="SvnConfiguration">
@@ -142,8 +140,8 @@
       <workItem from="1588060507023" duration="854000" />
       <workItem from="1588074193867" duration="86000" />
       <workItem from="1588074283330" duration="2720000" />
-      <workItem from="1588230457147" duration="2166000" />
-      <workItem from="1588241386432" duration="6211000" />
+      <workItem from="1588230457147" duration="2226000" />
+      <workItem from="1588238730579" duration="1396000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <created>1588084469855</created>
@@ -159,7 +157,14 @@
       <option name="project" value="LOCAL" />
       <updated>1588169813268</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="fix">
+      <created>1588238474533</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1588238474533</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -180,7 +185,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="test" />
     <MESSAGE value="remove configs" />
-    <option name="LAST_COMMIT_MESSAGE" value="remove configs" />
+    <MESSAGE value="fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix" />
   </component>
   <component name="WindowStateProjectService">
     <state x="552" y="179" key="#SQL_Dialects" timestamp="1587202381540">
@@ -207,10 +213,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="407" y="205" key="DBNavigator.ProjectSettingsDialog/-1920.335.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1587202282865" />
-    <state x="-1372" y="492" key="FileChooserDialogImpl" timestamp="1588074278032">
+    <state x="-1372" y="492" key="FileChooserDialogImpl" timestamp="1588241383284">
       <screen x="-1920" y="335" width="1536" height="832" />
     </state>
-    <state x="-1372" y="492" key="FileChooserDialogImpl/-1920.335.1536.832/0.0.1920.1040@-1920.335.1536.832" timestamp="1588074278032" />
+    <state x="-1372" y="492" key="FileChooserDialogImpl/-1920.335.1536.832/0.0.1920.1040@-1920.335.1536.832" timestamp="1588241383284" />
     <state x="685" y="196" key="FileChooserDialogImpl/-1920.335.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1587202524232" />
     <state x="548" y="155" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1583151756528" />
     <state width="1293" height="282" key="GridCell.Tab.0.bottom" timestamp="1587201108818">
@@ -243,20 +249,19 @@
     </state>
     <state x="755" y="425" key="NewPhpFileDialog/-1920.335.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1585487585397" />
     <state x="604" y="337" key="NewPhpFileDialog/0.0.1536.824@0.0.1536.824" timestamp="1581536061868" />
-    <state x="-1643" y="392" key="SettingsEditor" timestamp="1588246641405">
-      <screen x="-1920" y="335" width="1536" height="832" />
+    <state x="346" y="71" key="SettingsEditor" timestamp="1587203742867">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="-1643" y="392" key="SettingsEditor/-1920.335.1536.832/0.0.1920.1040@-1920.335.1536.832" timestamp="1588246641405" />
     <state x="346" y="71" key="SettingsEditor/-1920.335.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1587203742867" />
     <state x="277" y="56" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1582321294740" />
     <state width="200" height="441" key="SqlResolveConfigurable" timestamp="1587203542837">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="200" height="441" key="SqlResolveConfigurable/-1920.335.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1587203542837" />
-    <state x="-1559" y="480" key="Vcs.Push.Dialog.v2" timestamp="1588170104410">
+    <state x="-1559" y="480" key="Vcs.Push.Dialog.v2" timestamp="1588238476377">
       <screen x="-1920" y="335" width="1536" height="832" />
     </state>
-    <state x="-1559" y="480" key="Vcs.Push.Dialog.v2/-1920.335.1536.832/0.0.1920.1040@-1920.335.1536.832" timestamp="1588170104410" />
+    <state x="-1559" y="480" key="Vcs.Push.Dialog.v2/-1920.335.1536.832/0.0.1920.1040@-1920.335.1536.832" timestamp="1588238476377" />
     <state x="859" y="450" key="com.intellij.database.run.ParametersPanel.Standalone" timestamp="1587203593233">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
