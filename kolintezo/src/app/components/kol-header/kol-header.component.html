@@ -2,7 +2,7 @@
     <button mat-icon-button *ngIf="authService.isLoggedIn() === true" (click)="snav.toggle()"><i
             class="fas fa-bars"></i></button>
     <span class="toolbar-spacer"></span>
-    <span>Kolintéz<span class="rotate">ő</span></span>
+    <span>Kolintéző</span>
     <span class="toolbar-spacer"></span>
     <button mat-icon-button disabled><i class="fas fa-sync" [ngClass]="{'rotate': rotating}"></i>
     </button>
@@ -22,7 +22,7 @@
                  [fixedInViewport]="true" [fixedTopGap]="innerWidth < 600 ? 56 : 64">
         <div class="sidenav-menu-container">
             <app-menu-tree #tree [model]="accessibleMenu" [leftPadding]="5" [rightPadding]="20"
-                           [sidenav]="snav" [isPhone]="innerWidth < 600"
+                           [isPhone]="innerWidth < 600"
                            [sidenavcontainer]="snavContainer"></app-menu-tree>
         </div>
     </mat-sidenav>

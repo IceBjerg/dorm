@@ -16,7 +16,6 @@ export class GuestHostIdComponent implements OnInit {
     @Input() required: boolean;
     @Input() model: string;
     formControl: FormControl;
-    filterWord = '';
 
     constructor(public configService: ConfigService, public responseHandler: ResponseHandlerService) {
 
@@ -49,21 +48,21 @@ export class GuestHostIdComponent implements OnInit {
     }
 
     public reset() {
-        this.formControl.setValue(this.values[0].key);
+        this.resetSearch();
+        this.formControl.setValue(null);
         this.formControl.markAsUntouched();
     }
 
-    filterResults() {
+    filterResults(value: string) {
         this.values = [];
         this.initValues.forEach( (item) => {
-            if (item.value.toLocaleLowerCase().indexOf(this.filterWord.toLocaleLowerCase()) !== -1) {
+            if (item.value.toLocaleLowerCase().indexOf(value.toLocaleLowerCase()) !== -1) {
                 this.values.push(item);
             }
         });
     }
 
     resetSearch() {
-        this.filterWord = '';
-        this.filterResults();
+        this.filterResults('');
     }
 }

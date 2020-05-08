@@ -196,7 +196,6 @@ export class AppComponent implements OnInit {
     }
 
     async initData() {
-
         await this.configService.init();
         await this.authService.init();
         if (this.authService.isLoggedIn()) {

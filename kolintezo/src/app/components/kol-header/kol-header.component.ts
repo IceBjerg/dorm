@@ -56,7 +56,7 @@ export class KolHeaderComponent implements OnInit {
     @ViewChild('tree') tree: MenuTreeComponent;
 
     @Input() menu: MenuItemModel;
-    public rotating = true;
+    public rotating = false;
     public accessibleMenu: MenuItemModel;
 
     public languages = ['hu', 'en'];
@@ -140,5 +140,6 @@ export class KolHeaderComponent implements OnInit {
         const nextLang = $event.value;
         const idx = this.languages.findIndex( lang => lang === nextLang);
         this.translator.use(this.languages[idx]);
+        this.lang = nextLang;
     }
 }

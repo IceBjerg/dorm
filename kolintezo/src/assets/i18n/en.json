@@ -323,7 +323,7 @@
         "TRY-LATER": "Could not send the e-mail. Try again later. ",
         "TAKEN": "Username or e-mail already in use",
         "ONLY-NUMBER": "Expects an integer",
-        "LARGE": "Too long",
+        "LONG": "Too long",
         "FILE_FORMAT": "Bad file format",
         "UPLOAD": "Error occurred during upload",
         "ROOM-ID": "Has to contain only numbers and letters",

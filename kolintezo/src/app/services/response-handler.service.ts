@@ -39,38 +39,40 @@ export class ResponseHandlerService {
     }
 
     public getErrorMsg(formControl: FormControl) {
-        if (formControl.errors.required) {
-            return 'ERRORS.REQ';
-        }
-        if (formControl.errors.equals) {
-            return 'ERRORS.NOT-EQ';
-        }
-        if (formControl.errors.minlength) {
-            return 'ERRORS.SHORT';
-        }
-        if (formControl.errors.lowercase) {
-            return 'ERRORS.LOWC';
-        }
-        if (formControl.errors.uppercase) {
-            return 'ERRORS.UPPERC';
-        }
-        if (formControl.errors.number) {
-            return 'ERRORS.NUM';
-        }
-        if (formControl.errors.email) {
-            return 'ERRORS.FORMAT';
-        }
-        if (formControl.errors.neptun) {
-            return 'ERRORS.NEPTUN';
-        }
-        if (formControl.errors.onlynumber) {
-            return 'ERRORS.ONLY-NUMBER';
-        }
-        if (formControl.errors.roomid) {
-            return 'ERRORS.ROOM-ID';
-        }
-        if (formControl.errors.maxlength) {
-            return 'ERRORS.LARGE';
+        if (formControl.errors) {
+            if (formControl.errors.required) {
+                return 'ERRORS.REQ';
+            }
+            if (formControl.errors.equals) {
+                return 'ERRORS.NOT-EQ';
+            }
+            if (formControl.errors.minlength) {
+                return 'ERRORS.SHORT';
+            }
+            if (formControl.errors.lowercase) {
+                return 'ERRORS.LOWC';
+            }
+            if (formControl.errors.uppercase) {
+                return 'ERRORS.UPPERC';
+            }
+            if (formControl.errors.number) {
+                return 'ERRORS.NUM';
+            }
+            if (formControl.errors.email) {
+                return 'ERRORS.FORMAT';
+            }
+            if (formControl.errors.neptun) {
+                return 'ERRORS.NEPTUN';
+            }
+            if (formControl.errors.onlynumber) {
+                return 'ERRORS.ONLY-NUMBER';
+            }
+            if (formControl.errors.roomid) {
+                return 'ERRORS.ROOM-ID';
+            }
+            if (formControl.errors.maxlength) {
+                return 'ERRORS.LONG';
+            }
         }
         return 'ERRORS.UNKNOWN';
     }

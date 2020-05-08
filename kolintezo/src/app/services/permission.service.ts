@@ -14,7 +14,7 @@ export interface Logical {
 })
 export class PermissionService {
 
-    private readonly permissions: { [key: string]: Logical};
+    private permissions: { [key: string]: Logical};
 
     constructor(private configService: ConfigService, private authService: AuthService, private rotateService: RotateService) {
         this.permissions = {
@@ -35,8 +35,15 @@ export class PermissionService {
             'events-view': { and: [8]},
             'events-approve': {or: [9, 10]},
             'keys': {or: [7]}
-        }
-        ;
+        };
+    }
+
+    get perms(): { [key: string]: Logical} {
+        return this.permissions;
+    }
+
+    set perms(newPerms: { [key: string]: Logical}) {
+        this.permissions = newPerms;
     }
 
     getPermissions(route: string): Logical {

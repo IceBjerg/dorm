@@ -1,5 +1,5 @@
 {
   "restapiUrl": "http://localhost/dorm/restapi",
   "formFieldAppearance": "outline",
-  "frontentURL": "http://localhost:4200"
+  "frontendURL": "http://localhost:4200"
 }

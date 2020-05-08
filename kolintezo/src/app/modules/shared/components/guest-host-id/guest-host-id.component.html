@@ -3,7 +3,7 @@
     <mat-select [required]="required" [formControl]="formControl" (closed)="resetSearch()">
         <mat-form-field style="width: 100%;" appearance="fill">
             <mat-label>{{'FILTER.LABEL' | translate}}</mat-label>
-            <input class="mat-text-own" [(ngModel)]="filterWord" matInput type="text" (keyup)="filterResults()"
+            <input #filter class="mat-text-own" matInput type="text" (keyup)="filterResults(filter.value)" name="own-search"
                    [matAutocomplete]="autocomplete">
         </mat-form-field>
         <mat-option *ngFor="let row of values" [value]="row.key">

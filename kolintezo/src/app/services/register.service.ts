@@ -16,7 +16,7 @@ export class RegisterService {
     async registerBunch(file) {
         const formData = new FormData();
         formData.append('file', file);
-        formData.append('url', this.configService.getData('frontentURL'));
+        formData.append('url', this.configService.getData('frontendURL'));
         const url = this.configService.getData('restapiUrl') + '/public/registerStudents';
         return await this.authService.sendAuthorizedRequest('POST', url, formData, {
             reportProgress: true,
@@ -26,7 +26,7 @@ export class RegisterService {
 
     public async registerOne(body: { name: string, id: string, email: string }) {
         const newBody = body as any;
-        newBody.url = this.configService.getData('frontentURL');
+        newBody.url = this.configService.getData('frontendURL');
         const url = this.configService.getData('restapiUrl') + '/public/registerStudent';
         return await this.authService.sendAuthorizedRequest('POST', url, body, {});
     }

@@ -29,7 +29,7 @@
     <!--  childs-->
     <div [@childrenExpanded]="model.isExpanded ? 'expanded' : 'collapsed'" *ngIf="model.isExpanded" >
         <app-menu-tree *ngFor="let childModel of model.innerItems" [model]="childModel"
-                       [leftPadding]="getPadding()" [rightPadding]="rightPadding" [sidenav]="sidenav"
+                       [leftPadding]="getPadding()" [rightPadding]="rightPadding"
                        [isPhone]="isPhone"
                        [sidenavcontainer]="sidenavcontainer"></app-menu-tree>
     </div>

@@ -12,7 +12,7 @@ import {isString} from 'util';
 })
 export class RoomCapacityComponent implements OnInit {
 
-    @Input() model: number;
+    @Input() model = 0;
     @Input() required: boolean;
     public formControl: FormControl;
 
@@ -40,7 +40,7 @@ export class RoomCapacityComponent implements OnInit {
     }
 
     public reset() {
-        this.formControl.setValue('');
+        this.formControl.setValue(0);
         this.formControl.markAsUntouched();
     }
 

@@ -323,7 +323,7 @@
         "TRY-LATER": "Az email-t nem sikerült kiküldeni, próbálja újra. ",
         "TAKEN": "Létező felhasználó vagy e-mail cím. ",
         "ONLY-NUMBER": "Egész számot adjon meg",
-        "LARGE": "Az érték túl hosszú",
+        "LONG": "Az érték túl hosszú",
         "FILE_FORMAT": "Rossz fájlformátum",
         "UPLOAD": "A feltöltés meghiúsult",
         "ROOM-ID": "Csak betűt és számot tartalmazhat",

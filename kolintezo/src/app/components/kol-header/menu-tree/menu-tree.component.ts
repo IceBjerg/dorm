@@ -35,7 +35,6 @@ export class MenuTreeComponent implements OnInit {
     @Input() model: MenuItemModel;
     @Input() leftPadding: any;
     @Input() rightPadding: any;
-    @Input() sidenav: MatSidenav;
     @Input() isPhone: boolean;
     @Input() sidenavcontainer: MatSidenavContainer;
 

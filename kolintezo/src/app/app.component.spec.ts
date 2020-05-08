@@ -1,31 +1,38 @@
-import { TestBed, async } from '@angular/core/testing';
-import { AppComponent } from './app.component';
+import {TestBed, async, ComponentFixture} from '@angular/core/testing';
+import {AppComponent} from './app.component';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {RouterTestingModule} from '@angular/router/testing';
+import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatDialogModule} from '@angular/material/dialog';
+import Spy = jasmine.Spy;
 
 describe('AppComponent', () => {
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [
-        AppComponent
-      ],
-    }).compileComponents();
-  }));
+    let fixture: ComponentFixture<AppComponent>;
+    let app: AppComponent;
+    let initSpy: Spy;
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
-  });
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            declarations: [
+                AppComponent
+            ],
+            imports: [HttpClientTestingModule, RouterTestingModule, MatSnackBarModule, MatDialogModule],
+            providers: []
+        }).compileComponents();
+    }));
 
-  it(`should have as title 'kolintezo'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('kolintezo');
-  });
+    beforeEach(() => {
+        fixture = TestBed.createComponent(AppComponent);
+        app = fixture.componentInstance;
+        initSpy = spyOn(app, 'initData').and.callFake( async () => {});
+        fixture.detectChanges();
+    });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('kolintezo app is running!');
-  });
+    it('should create the app', () => {
+        expect(app).toBeTruthy();
+    });
+
+    it('service inits were called', async () => {
+        expect(initSpy).toHaveBeenCalled();
+    });
 });

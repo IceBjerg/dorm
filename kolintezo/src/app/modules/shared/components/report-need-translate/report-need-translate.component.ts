@@ -43,14 +43,12 @@ export class ReportNeedTranslateComponent implements OnInit {
 
 
     ngOnInit(): void {
-        this.fC = new FormControl(this.model, [
-            Validators.required
-        ]);
-        this.reset();
+        const valids = this.required ? [ Validators.required ] : [];
+        this.fC = new FormControl(this.model, valids);
     }
 
     public reset() {
-        this.fC.setValue(this.values[0].key);
+        this.fC.setValue(null);
         this.fC.markAsUntouched();
     }
 
